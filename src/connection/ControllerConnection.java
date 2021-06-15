@@ -90,7 +90,7 @@ public class ControllerConnection {
 	            }
 	        }
 	    });
-		//Bind text values to bind them to the choosen language
+		//Bind text values to bind them to the chosen language
 		addressLabel.textProperty().bind(I18N.createStringBinding("label.addressLabel"));
 		portLabel.textProperty().bind(I18N.createStringBinding("label.portLabel"));
 		languageLabel.textProperty().bind(I18N.createStringBinding("label.languageLabel"));

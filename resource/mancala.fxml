@@ -30,7 +30,7 @@
           </Menu>
           <Menu mnemonicParsing="false" text="Options">
             <items>
-                  <CheckMenuItem mnemonicParsing="false" text="Voir nombre de graines" />
+                  <CheckMenuItem mnemonicParsing="false" text="Voir nombre de graines" onAction="#showNumbers"/>
                   <CheckMenuItem mnemonicParsing="false" text="Voir état plateau" />
                   <CheckMenuItem mnemonicParsing="false" text="Bruitages" />
                   <CheckMenuItem mnemonicParsing="false" text="Musiques" />
@@ -43,7 +43,7 @@
          <children>
             <HBox prefHeight="75.0" prefWidth="1300.0">
                <children>
-                  <Label id="info" alignment="CENTER" contentDisplay="CENTER" minWidth="-Infinity" prefHeight="87.0" prefWidth="1300.0" text="Informations">
+                  <Label fx:id="info" alignment="CENTER" contentDisplay="CENTER" minWidth="-Infinity" prefHeight="87.0" prefWidth="1300.0">
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
@@ -69,29 +69,29 @@
                                     <Insets bottom="20.0" left="5.0" right="5.0" />
                                  </VBox.margin>
                               </Ellipse>
-                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-136.0" />
-                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-102.0" />
-                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-34.0" translateY="-102.0" />
-                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="34.0" translateY="-102.0" />
-                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-68.0" />
-                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-40.0" translateY="-68.0" />
-                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="40.0" translateY="-68.0" />
-                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-34.0" />
-                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-50.0" translateY="-34.0" />
-                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="50.0" translateY="-34.0" />
-                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" />
-                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-55.0" />
-                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="55.0" />
-                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-50.0" translateY="34.0" />
-                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="34.0" />
-                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="50.0" translateY="34.0" />
-                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-40.0" translateY="68.0" />
-                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="68.0" />
-                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="40.0" translateY="68.0" />
-                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-34.0" translateY="102.0" />
-                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="102.0" />
-                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="34.0" translateY="102.0" />
-                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="136.0" />
+                              <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-136.0" />
+                              <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-102.0" />
+                              <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-34.0" translateY="-102.0" />
+                              <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="34.0" translateY="-102.0" />
+                              <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-68.0" />
+                              <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-40.0" translateY="-68.0" />
+                              <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="40.0" translateY="-68.0" />
+                              <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-34.0" />
+                              <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-50.0" translateY="-34.0" />
+                              <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="50.0" translateY="-34.0" />
+                              <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-55.0" />
+                              <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="55.0" />
+                              <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-50.0" translateY="34.0" />
+                              <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="34.0" />
+                              <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="50.0" translateY="34.0" />
+                              <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-40.0" translateY="68.0" />
+                              <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="68.0" />
+                              <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="40.0" translateY="68.0" />
+                              <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-34.0" translateY="102.0" />
+                              <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="102.0" />
+                              <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="34.0" translateY="102.0" />
+                              <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="136.0" />
                            </children>
                         </StackPane>
                      </children>
@@ -103,7 +103,7 @@
                               <Region prefHeight="207.0" prefWidth="5.0" />
                               <VBox fx:id="hole11">
                                  <children>
-                                    <Label alignment="CENTER" prefHeight="57.0" prefWidth="150.0" text="6" visible="false">
+                                    <Label alignment="CENTER" prefHeight="57.0" prefWidth="150.0" text="4" visible="false">
                                        <font>
                                           <Font name="System Bold" size="16.0" />
                                        </font>
@@ -111,16 +111,16 @@
                                     <StackPane id="test-stack">
                                        <children>
                                           <Circle id="circle-test" fill="DODGERBLUE" nodeOrientation="RIGHT_TO_LEFT" radius="75.0" stroke="BLACK" strokeType="INSIDE" styleClass="hole1" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-40.0" translateY="-30.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-55.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-25.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="40.0" translateY="-30.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-50.0" translateY="10.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-17.0" translateY="10.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="17.0" translateY="10.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="50.0" translateY="10.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-20.0" translateY="44.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="20.0" translateY="44.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-40.0" translateY="-30.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-55.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-25.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="40.0" translateY="-30.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-50.0" translateY="10.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-17.0" translateY="10.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="17.0" translateY="10.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="50.0" translateY="10.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-20.0" translateY="44.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="20.0" translateY="44.0" />
                                        </children>
                                     </StackPane>
                                  </children>
@@ -128,7 +128,7 @@
                               <Region prefHeight="207.0" prefWidth="10.0" />
                               <VBox fx:id="hole10">
                                  <children>
-                                    <Label alignment="CENTER" prefHeight="57.0" prefWidth="150.0" text="6" visible="false">
+                                    <Label alignment="CENTER" prefHeight="57.0" prefWidth="150.0" text="4" visible="false">
                                        <font>
                                           <Font name="System Bold" size="16.0" />
                                        </font>
@@ -136,16 +136,16 @@
                                     <StackPane id="test-stack">
                                        <children>
                                           <Circle id="circle-test" fill="DODGERBLUE" nodeOrientation="RIGHT_TO_LEFT" radius="75.0" stroke="BLACK" strokeType="INSIDE" styleClass="hole1" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-40.0" translateY="-30.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-55.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-25.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="40.0" translateY="-30.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-50.0" translateY="10.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-17.0" translateY="10.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="17.0" translateY="10.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="50.0" translateY="10.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-20.0" translateY="44.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="20.0" translateY="44.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-40.0" translateY="-30.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-55.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-25.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="40.0" translateY="-30.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-50.0" translateY="10.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-17.0" translateY="10.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="17.0" translateY="10.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="50.0" translateY="10.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-20.0" translateY="44.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="20.0" translateY="44.0" />
                                        </children>
                                     </StackPane>
                                  </children>
@@ -153,7 +153,7 @@
                               <Region prefHeight="207.0" prefWidth="10.0" />
                               <VBox fx:id="hole9">
                                  <children>
-                                    <Label alignment="CENTER" prefHeight="57.0" prefWidth="150.0" text="6" visible="false">
+                                    <Label alignment="CENTER" prefHeight="57.0" prefWidth="150.0" text="4" visible="false">
                                        <font>
                                           <Font name="System Bold" size="16.0" />
                                        </font>
@@ -161,16 +161,16 @@
                                     <StackPane id="test-stack">
                                        <children>
                                           <Circle id="circle-test" fill="DODGERBLUE" nodeOrientation="RIGHT_TO_LEFT" radius="75.0" stroke="BLACK" strokeType="INSIDE" styleClass="hole1" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-40.0" translateY="-30.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-55.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-25.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="40.0" translateY="-30.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-50.0" translateY="10.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-17.0" translateY="10.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="17.0" translateY="10.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="50.0" translateY="10.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-20.0" translateY="44.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="20.0" translateY="44.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-40.0" translateY="-30.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-55.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-25.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="40.0" translateY="-30.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-50.0" translateY="10.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-17.0" translateY="10.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="17.0" translateY="10.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="50.0" translateY="10.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-20.0" translateY="44.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="20.0" translateY="44.0" />
                                        </children>
                                     </StackPane>
                                  </children>
@@ -178,7 +178,7 @@
                               <Region prefHeight="207.0" prefWidth="10.0" />
                               <VBox fx:id="hole8">
                                  <children>
-                                    <Label alignment="CENTER" prefHeight="57.0" prefWidth="150.0" text="6" visible="false">
+                                    <Label alignment="CENTER" prefHeight="57.0" prefWidth="150.0" text="4" visible="false">
                                        <font>
                                           <Font name="System Bold" size="16.0" />
                                        </font>
@@ -186,16 +186,16 @@
                                     <StackPane id="test-stack">
                                        <children>
                                           <Circle id="circle-test" fill="DODGERBLUE" nodeOrientation="RIGHT_TO_LEFT" radius="75.0" stroke="BLACK" strokeType="INSIDE" styleClass="hole1" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-40.0" translateY="-30.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-55.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-25.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="40.0" translateY="-30.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-50.0" translateY="10.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-17.0" translateY="10.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="17.0" translateY="10.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="50.0" translateY="10.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-20.0" translateY="44.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="20.0" translateY="44.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-40.0" translateY="-30.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-55.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-25.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="40.0" translateY="-30.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-50.0" translateY="10.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-17.0" translateY="10.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="17.0" translateY="10.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="50.0" translateY="10.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-20.0" translateY="44.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="20.0" translateY="44.0" />
                                        </children>
                                     </StackPane>
                                  </children>
@@ -203,7 +203,7 @@
                               <Region prefHeight="207.0" prefWidth="10.0" />
                               <VBox fx:id="hole7">
                                  <children>
-                                    <Label alignment="CENTER" prefHeight="57.0" prefWidth="150.0" text="6" visible="false">
+                                    <Label alignment="CENTER" prefHeight="57.0" prefWidth="150.0" text="4" visible="false">
                                        <font>
                                           <Font name="System Bold" size="16.0" />
                                        </font>
@@ -211,16 +211,16 @@
                                     <StackPane id="test-stack">
                                        <children>
                                           <Circle id="circle-test" fill="DODGERBLUE" nodeOrientation="RIGHT_TO_LEFT" radius="75.0" stroke="BLACK" strokeType="INSIDE" styleClass="hole1" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-40.0" translateY="-30.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-55.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-25.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="40.0" translateY="-30.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-50.0" translateY="10.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-17.0" translateY="10.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="17.0" translateY="10.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="50.0" translateY="10.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-20.0" translateY="44.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="20.0" translateY="44.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-40.0" translateY="-30.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-55.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-25.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="40.0" translateY="-30.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-50.0" translateY="10.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-17.0" translateY="10.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="17.0" translateY="10.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="50.0" translateY="10.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-20.0" translateY="44.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="20.0" translateY="44.0" />
                                        </children>
                                     </StackPane>
                                  </children>
@@ -228,7 +228,7 @@
                               <Region prefHeight="207.0" prefWidth="10.0" />
                               <VBox fx:id="hole6">
                                  <children>
-                                    <Label alignment="CENTER" prefHeight="57.0" prefWidth="150.0" text="6" visible="false">
+                                    <Label alignment="CENTER" prefHeight="57.0" prefWidth="150.0" text="4" visible="false">
                                        <font>
                                           <Font name="System Bold" size="16.0" />
                                        </font>
@@ -236,16 +236,16 @@
                                     <StackPane id="test-stack">
                                        <children>
                                           <Circle id="circle-test" fill="DODGERBLUE" nodeOrientation="RIGHT_TO_LEFT" radius="75.0" stroke="BLACK" strokeType="INSIDE" styleClass="hole1" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-40.0" translateY="-30.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-55.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-25.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="40.0" translateY="-30.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-50.0" translateY="10.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-17.0" translateY="10.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="17.0" translateY="10.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="50.0" translateY="10.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-20.0" translateY="44.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="20.0" translateY="44.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-40.0" translateY="-30.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-55.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-25.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="40.0" translateY="-30.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-50.0" translateY="10.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-17.0" translateY="10.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="17.0" translateY="10.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="50.0" translateY="10.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-20.0" translateY="44.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="20.0" translateY="44.0" />
                                        </children>
                                     </StackPane>
                                  </children>
@@ -261,7 +261,7 @@
                               <Region prefHeight="207.0" prefWidth="5.0" />
                               <VBox fx:id="hole0">
                                  <children>
-                                    <Label alignment="CENTER" prefHeight="57.0" prefWidth="150.0" text="6" visible="false">
+                                    <Label alignment="CENTER" prefHeight="57.0" prefWidth="150.0" text="4" visible="false">
                                        <font>
                                           <Font name="System Bold" size="16.0" />
                                        </font>
@@ -269,16 +269,16 @@
                                     <StackPane id="test-stack">
                                        <children>
                                           <Circle id="circle-test" fill="DODGERBLUE" nodeOrientation="RIGHT_TO_LEFT" radius="75.0" stroke="BLACK" strokeType="INSIDE" styleClass="hole1" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-40.0" translateY="-30.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-55.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-25.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="40.0" translateY="-30.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-50.0" translateY="10.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-17.0" translateY="10.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="17.0" translateY="10.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="50.0" translateY="10.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-20.0" translateY="44.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="20.0" translateY="44.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-40.0" translateY="-30.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-55.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-25.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="40.0" translateY="-30.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-50.0" translateY="10.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-17.0" translateY="10.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="17.0" translateY="10.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="50.0" translateY="10.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-20.0" translateY="44.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="20.0" translateY="44.0" />
                                        </children>
                                     </StackPane>
                                  </children>
@@ -286,7 +286,7 @@
                               <Region prefHeight="207.0" prefWidth="10.0" />
                               <VBox fx:id="hole1">
                                  <children>
-                                    <Label alignment="CENTER" prefHeight="57.0" prefWidth="150.0" text="6" visible="false">
+                                    <Label alignment="CENTER" prefHeight="57.0" prefWidth="150.0" text="4" visible="false">
                                        <font>
                                           <Font name="System Bold" size="16.0" />
                                        </font>
@@ -294,16 +294,16 @@
                                     <StackPane id="test-stack">
                                        <children>
                                           <Circle id="circle-test" fill="DODGERBLUE" nodeOrientation="RIGHT_TO_LEFT" radius="75.0" stroke="BLACK" strokeType="INSIDE" styleClass="hole1" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-40.0" translateY="-30.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-55.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-25.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="40.0" translateY="-30.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-50.0" translateY="10.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-17.0" translateY="10.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="17.0" translateY="10.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="50.0" translateY="10.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-20.0" translateY="44.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="20.0" translateY="44.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-40.0" translateY="-30.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-55.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-25.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="40.0" translateY="-30.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-50.0" translateY="10.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-17.0" translateY="10.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="17.0" translateY="10.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="50.0" translateY="10.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-20.0" translateY="44.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="20.0" translateY="44.0" />
                                        </children>
                                     </StackPane>
                                  </children>
@@ -311,7 +311,7 @@
                               <Region prefHeight="207.0" prefWidth="10.0" />
                               <VBox fx:id="hole2">
                                  <children>
-                                    <Label alignment="CENTER" prefHeight="57.0" prefWidth="150.0" text="6" visible="false">
+                                    <Label alignment="CENTER" prefHeight="57.0" prefWidth="150.0" text="4" visible="false">
                                        <font>
                                           <Font name="System Bold" size="16.0" />
                                        </font>
@@ -319,16 +319,16 @@
                                     <StackPane id="test-stack">
                                        <children>
                                           <Circle id="circle-test" fill="DODGERBLUE" nodeOrientation="RIGHT_TO_LEFT" radius="75.0" stroke="BLACK" strokeType="INSIDE" styleClass="hole1" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-40.0" translateY="-30.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-55.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-25.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="40.0" translateY="-30.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-50.0" translateY="10.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-17.0" translateY="10.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="17.0" translateY="10.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="50.0" translateY="10.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-20.0" translateY="44.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="20.0" translateY="44.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-40.0" translateY="-30.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-55.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-25.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="40.0" translateY="-30.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-50.0" translateY="10.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-17.0" translateY="10.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="17.0" translateY="10.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="50.0" translateY="10.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-20.0" translateY="44.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="20.0" translateY="44.0" />
                                        </children>
                                     </StackPane>
                                  </children>
@@ -336,7 +336,7 @@
                               <Region prefHeight="207.0" prefWidth="10.0" />
                               <VBox fx:id="hole3">
                                  <children>
-                                    <Label alignment="CENTER" prefHeight="57.0" prefWidth="150.0" text="6" visible="false">
+                                    <Label alignment="CENTER" prefHeight="57.0" prefWidth="150.0" text="4" visible="false">
                                        <font>
                                           <Font name="System Bold" size="16.0" />
                                        </font>
@@ -344,16 +344,16 @@
                                     <StackPane id="test-stack">
                                        <children>
                                           <Circle id="circle-test" fill="DODGERBLUE" nodeOrientation="RIGHT_TO_LEFT" radius="75.0" stroke="BLACK" strokeType="INSIDE" styleClass="hole1" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-40.0" translateY="-30.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-55.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-25.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="40.0" translateY="-30.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-50.0" translateY="10.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-17.0" translateY="10.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="17.0" translateY="10.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="50.0" translateY="10.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-20.0" translateY="44.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="20.0" translateY="44.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-40.0" translateY="-30.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-55.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-25.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="40.0" translateY="-30.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-50.0" translateY="10.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-17.0" translateY="10.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="17.0" translateY="10.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="50.0" translateY="10.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-20.0" translateY="44.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="20.0" translateY="44.0" />
                                        </children>
                                     </StackPane>
                                  </children>
@@ -361,7 +361,7 @@
                               <Region prefHeight="207.0" prefWidth="10.0" />
                               <VBox fx:id="hole4">
                                  <children>
-                                    <Label alignment="CENTER" prefHeight="57.0" prefWidth="150.0" text="6" visible="false">
+                                    <Label alignment="CENTER" prefHeight="57.0" prefWidth="150.0" text="4" visible="false">
                                        <font>
                                           <Font name="System Bold" size="16.0" />
                                        </font>
@@ -369,16 +369,16 @@
                                     <StackPane id="test-stack">
                                        <children>
                                           <Circle id="circle-test" fill="DODGERBLUE" nodeOrientation="RIGHT_TO_LEFT" radius="75.0" stroke="BLACK" strokeType="INSIDE" styleClass="hole1" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-40.0" translateY="-30.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-55.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-25.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="40.0" translateY="-30.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-50.0" translateY="10.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-17.0" translateY="10.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="17.0" translateY="10.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="50.0" translateY="10.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-20.0" translateY="44.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="20.0" translateY="44.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-40.0" translateY="-30.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-55.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-25.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="40.0" translateY="-30.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-50.0" translateY="10.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-17.0" translateY="10.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="17.0" translateY="10.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="50.0" translateY="10.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-20.0" translateY="44.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="20.0" translateY="44.0" />
                                        </children>
                                     </StackPane>
                                  </children>
@@ -386,7 +386,7 @@
                               <Region prefHeight="207.0" prefWidth="10.0" />
                               <VBox fx:id="hole5">
                                  <children>
-                                    <Label alignment="CENTER" prefHeight="57.0" prefWidth="150.0" text="6" visible="false">
+                                    <Label alignment="CENTER" prefHeight="57.0" prefWidth="150.0" text="4" visible="false">
                                        <font>
                                           <Font name="System Bold" size="16.0" />
                                        </font>
@@ -394,16 +394,16 @@
                                     <StackPane id="test-stack">
                                        <children>
                                           <Circle id="circle-test" fill="DODGERBLUE" nodeOrientation="RIGHT_TO_LEFT" radius="75.0" stroke="BLACK" strokeType="INSIDE" styleClass="hole1" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-40.0" translateY="-30.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-55.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-25.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="40.0" translateY="-30.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-50.0" translateY="10.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-17.0" translateY="10.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="17.0" translateY="10.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="50.0" translateY="10.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-20.0" translateY="44.0" />
-                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="20.0" translateY="44.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-40.0" translateY="-30.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-55.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-25.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="40.0" translateY="-30.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-50.0" translateY="10.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-17.0" translateY="10.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="17.0" translateY="10.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="50.0" translateY="10.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-20.0" translateY="44.0" />
+                                          <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="20.0" translateY="44.0" />
                                        </children>
                                     </StackPane>
                                  </children>
@@ -424,29 +424,29 @@
                                     <Insets bottom="20.0" left="5.0" right="5.0" />
                                  </VBox.margin>
                               </Ellipse>
-                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-136.0" />
-                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-102.0" />
-                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-34.0" translateY="-102.0" />
-                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="34.0" translateY="-102.0" />
-                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-68.0" />
-                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-40.0" translateY="-68.0" />
-                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="40.0" translateY="-68.0" />
-                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-34.0" />
-                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-50.0" translateY="-34.0" />
-                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="50.0" translateY="-34.0" />
-                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" />
-                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-55.0" />
-                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="55.0" />
-                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-50.0" translateY="34.0" />
-                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="34.0" />
-                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="50.0" translateY="34.0" />
-                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-40.0" translateY="68.0" />
-                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="68.0" />
-                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="40.0" translateY="68.0" />
-                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-34.0" translateY="102.0" />
-                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="102.0" />
-                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="34.0" translateY="102.0" />
-                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="136.0" />
+                              <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-136.0" />
+                              <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-102.0" />
+                              <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-34.0" translateY="-102.0" />
+                              <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="34.0" translateY="-102.0" />
+                              <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-68.0" />
+                              <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-40.0" translateY="-68.0" />
+                              <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="40.0" translateY="-68.0" />
+                              <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-34.0" />
+                              <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-50.0" translateY="-34.0" />
+                              <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="50.0" translateY="-34.0" />
+                              <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-55.0" />
+                              <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="55.0" />
+                              <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-50.0" translateY="34.0" />
+                              <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="34.0" />
+                              <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="50.0" translateY="34.0" />
+                              <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-40.0" translateY="68.0" />
+                              <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="68.0" />
+                              <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="40.0" translateY="68.0" />
+                              <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-34.0" translateY="102.0" />
+                              <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="102.0" />
+                              <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="34.0" translateY="102.0" />
+                              <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="136.0" />
                            </children>
                            <VBox.margin>
                               <Insets top="20.0" />
@@ -463,7 +463,7 @@
             </HBox>
             <VBox>
                <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" layoutY="514.0" prefHeight="75.0" prefWidth="1300.0" text="Messages confirmation / annulation">
+                  <Label fx:id="error" alignment="CENTER" contentDisplay="CENTER" layoutY="514.0" prefHeight="75.0" prefWidth="1300.0">
                      <font>
                         <Font size="18.0" />
                      </font>
