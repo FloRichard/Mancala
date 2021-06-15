@@ -23,6 +23,7 @@ import utils.I18N;
 
 
 public class Interface {
+	
 	private Socket socket;
 	
 	public Interface(Socket socket, Locale lang) {
@@ -32,11 +33,13 @@ public class Interface {
 	
 	public void start() {
 		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("mancala.fxml"));
-			Parent root = loader.load();
+			ControllerMancala controller = new ControllerMancala();
+			controller.setManager(new SocketManager(this.socket));
 			
-			ControllerMancala controller = loader.getController();
-			controller.setManager(new SocketManager(socket));
+			FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("mancala.fxml"));
+			loader.setController(controller);
+			
+			Parent root = loader.load();
 			
 			Scene scene = new Scene(root);
 			

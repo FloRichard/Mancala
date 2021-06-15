@@ -3,13 +3,12 @@ package mancala;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
+import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
@@ -48,23 +47,20 @@ public class ControllerMancala {
 		
 		info.textProperty().bind(I18N.createStringBinding("info.waiting"));
 		
-		Platform.runLater(() -> {
-
-			HandleSocketTask init = new HandleSocketTask(manager);
-			GameRunningTask game = new GameRunningTask(this, manager);
+		HandleSocketService socketHandler = new HandleSocketService(manager);
+		
+		socketHandler.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
 			
-			 ExecutorService executorService = Executors.newFixedThreadPool(1);
-			 executorService.execute(init);
-			 try {
-				handleResponse(init.get());
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			} catch (ExecutionException e) {
-				e.printStackTrace();
+			@Override
+			public void handle(WorkerStateEvent event) {
+				System.out.println("oui");
+				handleResponse((ServerOutputController) event.getSource().getValue());
+				socketHandler.restart();
 			}
-			 executorService.execute(game);
-			 info.textProperty().bind(game.messageProperty());
-			 executorService.shutdown();
+		});
+		
+		Platform.runLater(() -> {
+			socketHandler.start();
 		});
 	}
 
@@ -82,6 +78,10 @@ public class ControllerMancala {
 		if(response.isInit()) {
 			this.isBeginning=response.isBeginning();
 			this.playerNumber=response.getPlayerNumber();
+			if(isBeginning())
+				info.textProperty().bind(I18N.createStringBinding("info.yourTurn"));
+			else
+				info.textProperty().bind(I18N.createStringBinding("info.notYourTurn"));
 		}
 	}
 
