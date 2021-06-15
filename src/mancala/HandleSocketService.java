@@ -24,11 +24,4 @@ public class HandleSocketService extends Service<ServerOutputController> {
 			}
 		};
 	}
-	@Override
-	protected void succeeded() {
-		super.succeeded();
-//		System.out.println("Socket task done, restarting...");
-//		this.restart();
-	}
-
 }

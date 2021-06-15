@@ -53,7 +53,6 @@ public class ControllerMancala {
 			
 			@Override
 			public void handle(WorkerStateEvent event) {
-				System.out.println("oui");
 				handleResponse((ServerOutputController) event.getSource().getValue());
 				socketHandler.restart();
 			}
