@@ -1,0 +1,494 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mancala.ControllerMancala">
+   <children>
+      <MenuBar prefHeight="25.0" prefWidth="1300.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="Awalé">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Charger partie" />
+                  <MenuItem mnemonicParsing="false" text="Sauvegarder partie" />
+                  <MenuItem mnemonicParsing="false" text="Abandonner partie" />
+                  <MenuItem mnemonicParsing="false" text="Nouveau match" />
+                  <MenuItem mnemonicParsing="false" text="Arrêter match" />
+                  <MenuItem mnemonicParsing="false" text="Annuler dernier coup" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Règles">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Voir la règle" />
+               </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Options">
+            <items>
+                  <CheckMenuItem mnemonicParsing="false" text="Voir nombre de graines" />
+                  <CheckMenuItem mnemonicParsing="false" text="Voir état plateau" />
+                  <CheckMenuItem mnemonicParsing="false" text="Bruitages" />
+                  <CheckMenuItem mnemonicParsing="false" text="Musiques" />
+            </items>
+          </Menu>
+            <Menu mnemonicParsing="false" text="À propos" />
+        </menus>
+      </MenuBar>
+      <VBox layoutY="25.0" prefHeight="645.0" prefWidth="1300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+         <children>
+            <HBox prefHeight="75.0" prefWidth="1300.0">
+               <children>
+                  <Label id="info" alignment="CENTER" contentDisplay="CENTER" minWidth="-Infinity" prefHeight="87.0" prefWidth="1300.0" text="Informations">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox id="board" prefHeight="414.0" prefWidth="1300.0" styleClass="board">
+               <children>
+                  <VBox prefHeight="200.0" prefWidth="170.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="74.0" prefWidth="170.0" text="0" textFill="#000fff" visible="false">
+                           <font>
+                              <Font name="System Bold" size="32.0" />
+                           </font>
+                        </Label>
+                        <StackPane id="test-granary">
+                           <children>
+                              <Ellipse fill="DODGERBLUE" radiusX="80.0" radiusY="160.0" stroke="BLACK" strokeType="INSIDE" styleClass="hole2">
+                                 <VBox.margin>
+                                    <Insets bottom="20.0" left="5.0" right="5.0" />
+                                 </VBox.margin>
+                              </Ellipse>
+                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-136.0" />
+                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-102.0" />
+                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-34.0" translateY="-102.0" />
+                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="34.0" translateY="-102.0" />
+                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-68.0" />
+                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-40.0" translateY="-68.0" />
+                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="40.0" translateY="-68.0" />
+                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-34.0" />
+                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-50.0" translateY="-34.0" />
+                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="50.0" translateY="-34.0" />
+                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-55.0" />
+                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="55.0" />
+                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-50.0" translateY="34.0" />
+                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="34.0" />
+                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="50.0" translateY="34.0" />
+                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-40.0" translateY="68.0" />
+                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="68.0" />
+                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="40.0" translateY="68.0" />
+                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-34.0" translateY="102.0" />
+                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="102.0" />
+                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="34.0" translateY="102.0" />
+                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="136.0" />
+                           </children>
+                        </StackPane>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="414.0" prefWidth="960.0">
+                     <children>
+                        <HBox prefHeight="207.0" prefWidth="960.0">
+                           <children>
+                              <Region prefHeight="207.0" prefWidth="5.0" />
+                              <VBox fx:id="hole11">
+                                 <children>
+                                    <Label alignment="CENTER" prefHeight="57.0" prefWidth="150.0" text="6" visible="false">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <StackPane id="test-stack">
+                                       <children>
+                                          <Circle id="circle-test" fill="DODGERBLUE" nodeOrientation="RIGHT_TO_LEFT" radius="75.0" stroke="BLACK" strokeType="INSIDE" styleClass="hole1" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-40.0" translateY="-30.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-55.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-25.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="40.0" translateY="-30.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-50.0" translateY="10.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-17.0" translateY="10.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="17.0" translateY="10.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="50.0" translateY="10.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-20.0" translateY="44.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="20.0" translateY="44.0" />
+                                       </children>
+                                    </StackPane>
+                                 </children>
+                              </VBox>
+                              <Region prefHeight="207.0" prefWidth="10.0" />
+                              <VBox fx:id="hole10">
+                                 <children>
+                                    <Label alignment="CENTER" prefHeight="57.0" prefWidth="150.0" text="6" visible="false">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <StackPane id="test-stack">
+                                       <children>
+                                          <Circle id="circle-test" fill="DODGERBLUE" nodeOrientation="RIGHT_TO_LEFT" radius="75.0" stroke="BLACK" strokeType="INSIDE" styleClass="hole1" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-40.0" translateY="-30.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-55.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-25.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="40.0" translateY="-30.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-50.0" translateY="10.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-17.0" translateY="10.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="17.0" translateY="10.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="50.0" translateY="10.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-20.0" translateY="44.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="20.0" translateY="44.0" />
+                                       </children>
+                                    </StackPane>
+                                 </children>
+                              </VBox>
+                              <Region prefHeight="207.0" prefWidth="10.0" />
+                              <VBox fx:id="hole9">
+                                 <children>
+                                    <Label alignment="CENTER" prefHeight="57.0" prefWidth="150.0" text="6" visible="false">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <StackPane id="test-stack">
+                                       <children>
+                                          <Circle id="circle-test" fill="DODGERBLUE" nodeOrientation="RIGHT_TO_LEFT" radius="75.0" stroke="BLACK" strokeType="INSIDE" styleClass="hole1" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-40.0" translateY="-30.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-55.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-25.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="40.0" translateY="-30.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-50.0" translateY="10.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-17.0" translateY="10.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="17.0" translateY="10.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="50.0" translateY="10.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-20.0" translateY="44.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="20.0" translateY="44.0" />
+                                       </children>
+                                    </StackPane>
+                                 </children>
+                              </VBox>
+                              <Region prefHeight="207.0" prefWidth="10.0" />
+                              <VBox fx:id="hole8">
+                                 <children>
+                                    <Label alignment="CENTER" prefHeight="57.0" prefWidth="150.0" text="6" visible="false">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <StackPane id="test-stack">
+                                       <children>
+                                          <Circle id="circle-test" fill="DODGERBLUE" nodeOrientation="RIGHT_TO_LEFT" radius="75.0" stroke="BLACK" strokeType="INSIDE" styleClass="hole1" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-40.0" translateY="-30.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-55.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-25.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="40.0" translateY="-30.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-50.0" translateY="10.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-17.0" translateY="10.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="17.0" translateY="10.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="50.0" translateY="10.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-20.0" translateY="44.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="20.0" translateY="44.0" />
+                                       </children>
+                                    </StackPane>
+                                 </children>
+                              </VBox>
+                              <Region prefHeight="207.0" prefWidth="10.0" />
+                              <VBox fx:id="hole7">
+                                 <children>
+                                    <Label alignment="CENTER" prefHeight="57.0" prefWidth="150.0" text="6" visible="false">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <StackPane id="test-stack">
+                                       <children>
+                                          <Circle id="circle-test" fill="DODGERBLUE" nodeOrientation="RIGHT_TO_LEFT" radius="75.0" stroke="BLACK" strokeType="INSIDE" styleClass="hole1" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-40.0" translateY="-30.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-55.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-25.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="40.0" translateY="-30.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-50.0" translateY="10.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-17.0" translateY="10.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="17.0" translateY="10.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="50.0" translateY="10.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-20.0" translateY="44.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="20.0" translateY="44.0" />
+                                       </children>
+                                    </StackPane>
+                                 </children>
+                              </VBox>
+                              <Region prefHeight="207.0" prefWidth="10.0" />
+                              <VBox fx:id="hole6">
+                                 <children>
+                                    <Label alignment="CENTER" prefHeight="57.0" prefWidth="150.0" text="6" visible="false">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <StackPane id="test-stack">
+                                       <children>
+                                          <Circle id="circle-test" fill="DODGERBLUE" nodeOrientation="RIGHT_TO_LEFT" radius="75.0" stroke="BLACK" strokeType="INSIDE" styleClass="hole1" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-40.0" translateY="-30.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-55.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-25.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="40.0" translateY="-30.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-50.0" translateY="10.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-17.0" translateY="10.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="17.0" translateY="10.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="50.0" translateY="10.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-20.0" translateY="44.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="20.0" translateY="44.0" />
+                                       </children>
+                                    </StackPane>
+                                 </children>
+                              </VBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <Region prefHeight="207.0" prefWidth="10.0" />
+                        <HBox prefHeight="207.0" prefWidth="960.0">
+                           <children>
+                              <Region prefHeight="207.0" prefWidth="5.0" />
+                              <VBox fx:id="hole0">
+                                 <children>
+                                    <Label alignment="CENTER" prefHeight="57.0" prefWidth="150.0" text="6" visible="false">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <StackPane id="test-stack">
+                                       <children>
+                                          <Circle id="circle-test" fill="DODGERBLUE" nodeOrientation="RIGHT_TO_LEFT" radius="75.0" stroke="BLACK" strokeType="INSIDE" styleClass="hole1" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-40.0" translateY="-30.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-55.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-25.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="40.0" translateY="-30.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-50.0" translateY="10.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-17.0" translateY="10.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="17.0" translateY="10.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="50.0" translateY="10.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-20.0" translateY="44.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="20.0" translateY="44.0" />
+                                       </children>
+                                    </StackPane>
+                                 </children>
+                              </VBox>
+                              <Region prefHeight="207.0" prefWidth="10.0" />
+                              <VBox fx:id="hole1">
+                                 <children>
+                                    <Label alignment="CENTER" prefHeight="57.0" prefWidth="150.0" text="6" visible="false">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <StackPane id="test-stack">
+                                       <children>
+                                          <Circle id="circle-test" fill="DODGERBLUE" nodeOrientation="RIGHT_TO_LEFT" radius="75.0" stroke="BLACK" strokeType="INSIDE" styleClass="hole1" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-40.0" translateY="-30.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-55.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-25.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="40.0" translateY="-30.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-50.0" translateY="10.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-17.0" translateY="10.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="17.0" translateY="10.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="50.0" translateY="10.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-20.0" translateY="44.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="20.0" translateY="44.0" />
+                                       </children>
+                                    </StackPane>
+                                 </children>
+                              </VBox>
+                              <Region prefHeight="207.0" prefWidth="10.0" />
+                              <VBox fx:id="hole2">
+                                 <children>
+                                    <Label alignment="CENTER" prefHeight="57.0" prefWidth="150.0" text="6" visible="false">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <StackPane id="test-stack">
+                                       <children>
+                                          <Circle id="circle-test" fill="DODGERBLUE" nodeOrientation="RIGHT_TO_LEFT" radius="75.0" stroke="BLACK" strokeType="INSIDE" styleClass="hole1" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-40.0" translateY="-30.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-55.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-25.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="40.0" translateY="-30.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-50.0" translateY="10.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-17.0" translateY="10.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="17.0" translateY="10.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="50.0" translateY="10.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-20.0" translateY="44.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="20.0" translateY="44.0" />
+                                       </children>
+                                    </StackPane>
+                                 </children>
+                              </VBox>
+                              <Region prefHeight="207.0" prefWidth="10.0" />
+                              <VBox fx:id="hole3">
+                                 <children>
+                                    <Label alignment="CENTER" prefHeight="57.0" prefWidth="150.0" text="6" visible="false">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <StackPane id="test-stack">
+                                       <children>
+                                          <Circle id="circle-test" fill="DODGERBLUE" nodeOrientation="RIGHT_TO_LEFT" radius="75.0" stroke="BLACK" strokeType="INSIDE" styleClass="hole1" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-40.0" translateY="-30.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-55.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-25.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="40.0" translateY="-30.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-50.0" translateY="10.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-17.0" translateY="10.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="17.0" translateY="10.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="50.0" translateY="10.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-20.0" translateY="44.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="20.0" translateY="44.0" />
+                                       </children>
+                                    </StackPane>
+                                 </children>
+                              </VBox>
+                              <Region prefHeight="207.0" prefWidth="10.0" />
+                              <VBox fx:id="hole4">
+                                 <children>
+                                    <Label alignment="CENTER" prefHeight="57.0" prefWidth="150.0" text="6" visible="false">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <StackPane id="test-stack">
+                                       <children>
+                                          <Circle id="circle-test" fill="DODGERBLUE" nodeOrientation="RIGHT_TO_LEFT" radius="75.0" stroke="BLACK" strokeType="INSIDE" styleClass="hole1" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-40.0" translateY="-30.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-55.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-25.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="40.0" translateY="-30.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-50.0" translateY="10.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-17.0" translateY="10.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="17.0" translateY="10.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="50.0" translateY="10.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-20.0" translateY="44.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="20.0" translateY="44.0" />
+                                       </children>
+                                    </StackPane>
+                                 </children>
+                              </VBox>
+                              <Region prefHeight="207.0" prefWidth="10.0" />
+                              <VBox fx:id="hole5">
+                                 <children>
+                                    <Label alignment="CENTER" prefHeight="57.0" prefWidth="150.0" text="6" visible="false">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <StackPane id="test-stack">
+                                       <children>
+                                          <Circle id="circle-test" fill="DODGERBLUE" nodeOrientation="RIGHT_TO_LEFT" radius="75.0" stroke="BLACK" strokeType="INSIDE" styleClass="hole1" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-40.0" translateY="-30.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-55.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-25.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="40.0" translateY="-30.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-50.0" translateY="10.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-17.0" translateY="10.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="17.0" translateY="10.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="50.0" translateY="10.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-20.0" translateY="44.0" />
+                                          <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="20.0" translateY="44.0" />
+                                       </children>
+                                    </StackPane>
+                                 </children>
+                              </VBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="200.0" prefWidth="170.0">
+                     <children>
+                        <StackPane>
+                           <children>
+                              <Ellipse fill="DODGERBLUE" radiusX="80.0" radiusY="160.0" stroke="BLACK" strokeType="INSIDE" styleClass="hole2">
+                                 <VBox.margin>
+                                    <Insets bottom="20.0" left="5.0" right="5.0" />
+                                 </VBox.margin>
+                              </Ellipse>
+                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-136.0" />
+                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-102.0" />
+                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-34.0" translateY="-102.0" />
+                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="34.0" translateY="-102.0" />
+                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-68.0" />
+                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-40.0" translateY="-68.0" />
+                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="40.0" translateY="-68.0" />
+                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="-34.0" />
+                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-50.0" translateY="-34.0" />
+                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="50.0" translateY="-34.0" />
+                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-55.0" />
+                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="55.0" />
+                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-50.0" translateY="34.0" />
+                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="34.0" />
+                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="50.0" translateY="34.0" />
+                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-40.0" translateY="68.0" />
+                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="68.0" />
+                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="40.0" translateY="68.0" />
+                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-34.0" translateY="102.0" />
+                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="102.0" />
+                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="34.0" translateY="102.0" />
+                              <ImageView id="test-seed" fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateY="136.0" />
+                           </children>
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </StackPane>
+                        <Label alignment="CENTER" prefHeight="74.0" prefWidth="170.0" text="0" textFill="#ff6900" visible="false">
+                           <font>
+                              <Font name="System Bold" size="32.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <VBox>
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutY="514.0" prefHeight="75.0" prefWidth="1300.0" text="Messages confirmation / annulation">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </VBox>
+            <HBox alignment="CENTER">
+               <children>
+                  <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="84.0" text="Button">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </Button>
+                  <Region layoutX="413.0" layoutY="595.0" prefHeight="48.0" prefWidth="154.0" />
+                  <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="84.0" text="Button">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

@@ -1,0 +1,18 @@
+.board{
+    -fx-border-radius: 15;
+    -fx-border-color: black;
+}
+
+.hole1{
+	-fx-fill: radial-gradient(focus-distance 0% , center 30% 20% , radius 100% , #DAD9DE, #B9B8BD);
+	-fx-effect: innershadow(three-pass-box, rgba(0,0,0,0.4), 50, 0.30, 10, 10);
+}
+
+.hole2{
+	-fx-fill: radial-gradient(focus-distance 0% , center 20% 30% , radius 100% , #DAD9DE, #B9B8BD);
+	-fx-effect: innershadow(three-pass-box, rgba(0,0,0,0.4), 50, 0.30, 10, 10);
+}
+
+.seed{
+	-fx-image: url('seed.png');
+}
