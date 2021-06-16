@@ -42,6 +42,8 @@ public class ControllerMancala {
 	private int playerNumber;
 	
 	private boolean isBeginning;
+	
+	private boolean isYourTurn;
 
 	@FXML
 	public void initialize() {
@@ -63,15 +65,18 @@ public class ControllerMancala {
 			}
 		});
 		
+		for (Label label: holesCount) {
+			label.setVisible(true);
+		}
+		
 		for (StackPane pane : holesPane) {
 			pane.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
 			     @Override
 			     public void handle(MouseEvent event) {
 			         System.out.println("Hole clicked");
-			         manager.sendMove(pane.getId());
-			         error.textProperty().bind(I18N.createStringBinding("info.move.confirm"));
-			         showConfirmButtons();
-			         event.consume();
+			         if(isYourTurn) {
+				         manager.sendMove(pane.getId());
+			         }
 			     }
 			});
 		}
@@ -89,13 +94,16 @@ public class ControllerMancala {
 		if(response.isError()) {
 			error.textProperty().bind(I18N.createStringBinding(response.getErrorValue()));
 			error.getStyleClass().add("error");
-			if(response.getErrorValue().equals("error.notYourTurn") || response.getErrorValue().equals("error.isStarving")
-				|| response.getErrorValue().equals("error.notYourArea") || response.getErrorValue().equals("error.emptyHole") 
-				|| response.getErrorValue().equals("error.notFeedingMove"))
-				toggleButtonsVisibility();
 		}
 		if(response.isBoard()) {
-			info.textProperty().bind(I18N.createStringBinding("info.yourTurn"));
+			if(this.playerNumber==response.getPlayerNumberTurn())
+				isYourTurn=true;
+			else
+				isYourTurn=false;
+			if(isYourTurn)
+				info.textProperty().bind(I18N.createStringBinding("info.yourTurn"));
+			else
+				info.textProperty().bind(I18N.createStringBinding("info.notYourTurn"));
 			int seeds[] = response.getSeeds();
 			for (int i=0;i<seeds.length;i++) {
 				holesCount.get(i).setText(String.valueOf(seeds[i]));
@@ -103,15 +111,22 @@ public class ControllerMancala {
 			((Label) player1Granary.getChildren().get(1)).setText(String.valueOf(response.getPlayerOneGranaryCount()));
 			((Label) player2Granary.getChildren().get(0)).setText(String.valueOf(response.getPlayerTwoGranaryCount()));
 			updateSeeds();
-			System.out.println(holesCount.get(11).getText());
+			if(response.waitsForConfirmation()) {
+		         error.textProperty().bind(I18N.createStringBinding("info.move.confirm"));
+		         showConfirmButtons();
+			}
 		}
 		if(response.isInit()) {
 			this.isBeginning=response.isBeginning();
 			this.playerNumber=response.getPlayerNumber();
-			if(isBeginning())
+			if(isBeginning()) {
 				info.textProperty().bind(I18N.createStringBinding("info.yourTurn"));
-			else
+				isYourTurn=true;
+			}
+			else {
 				info.textProperty().bind(I18N.createStringBinding("info.notYourTurn"));
+				isYourTurn=false;
+			}
 		}
 	}
 
@@ -187,7 +202,6 @@ public class ControllerMancala {
 		        manager.sendConfirm("confirm");
 		        error.textProperty().bind(I18N.createStringBinding("empty"));
 		        toggleButtonsVisibility();
-		        info.textProperty().bind(I18N.createStringBinding("info.notYourTurn"));
 		    }
 		});
 		button2.setOnAction(new EventHandler<ActionEvent>() {

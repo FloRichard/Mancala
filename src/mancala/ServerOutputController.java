@@ -6,8 +6,9 @@ import com.google.gson.JsonParser;
 
 public class ServerOutputController {
 
-	private static final String IS_BEGINNING = "isBeginning";
+	private static final String NEED_CONFIRMATION = "needConfirmation";
 	private static final String PLAYER_NUMBER = "playerNumber";
+	private static final String IS_BEGINNING = "isBeginning";
 	private static final String INIT = "init";
 	private static final String PLAYER_TWO_GRANARY_COUNT = "playerTwoGranaryCount";
 	private static final String PLAYER_ONE_GRANARY_COUNT = "playerOneGranaryCount";
@@ -29,6 +30,8 @@ public class ServerOutputController {
 	private String errorValue;
 	
 	private boolean isBoard;
+	private int playerNumberTurn;
+	private boolean waitsForConfirmation;
 	private int[] seeds;
 	private int playerOneGranaryCount;
 	private int playerTwoGranaryCount;
@@ -70,6 +73,8 @@ public class ServerOutputController {
 			
 		case BOARD:
 			this.isBoard=true;
+			this.playerNumberTurn=jsonObject.get(PLAYER_NUMBER).getAsInt();
+			this.waitsForConfirmation=jsonObject.get(NEED_CONFIRMATION).getAsBoolean();
 			this.seeds = new int[12];
 			JsonArray jsonArray = jsonObject.get(SEEDS).getAsJsonArray();
 			
@@ -208,6 +213,22 @@ public class ServerOutputController {
 
 	public void setBeginning(boolean isBeginning) {
 		this.isBeginning = isBeginning;
+	}
+
+	public int getPlayerNumberTurn() {
+		return playerNumberTurn;
+	}
+
+	public void setPlayerNumberTurn(int playerNumberTurn) {
+		this.playerNumberTurn = playerNumberTurn;
+	}
+
+	public boolean waitsForConfirmation() {
+		return waitsForConfirmation;
+	}
+
+	public void setWaitsForConfirmation(boolean waitsForConfirmation) {
+		this.waitsForConfirmation = waitsForConfirmation;
 	}
 	
 }

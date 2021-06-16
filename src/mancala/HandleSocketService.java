@@ -18,7 +18,6 @@ public class HandleSocketService extends Service<ServerOutputController> {
 
 			@Override
 			protected ServerOutputController call() throws Exception {
-				System.out.println("Socket task starting");
 				ServerOutputController response = manager.listen();
 				return response;
 			}
