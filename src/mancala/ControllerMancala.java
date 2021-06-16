@@ -42,7 +42,7 @@ public class ControllerMancala {
 	private int playerNumber;
 	
 	private boolean isBeginning;
-	
+
 	@FXML
 	public void initialize() {
 		
@@ -88,6 +88,7 @@ public class ControllerMancala {
 		if(response.isError()) {
 			error.textProperty().bind(I18N.createStringBinding(response.getErrorValue()));
 			error.getStyleClass().add("error");
+			toggleButtonsVisibility();
 		}
 		if(response.isBoard()) {
 			int seeds[] = response.getSeeds();
@@ -173,20 +174,21 @@ public class ControllerMancala {
 		button1.setOnAction(new EventHandler<ActionEvent>() {
 		    @Override public void handle(ActionEvent e) {
 		        manager.sendConfirm("confirm");
-		        button1.setVisible(false);
-		        button2.setVisible(false);
+		        toggleButtonsVisibility();
 		    }
 		});
 		button2.setOnAction(new EventHandler<ActionEvent>() {
 		    @Override public void handle(ActionEvent e) {
 		        manager.sendConfirm("abort");
-		        button1.setVisible(false);
-		        button2.setVisible(false);
+		        toggleButtonsVisibility();
 		    }
 		});
-		
-		button1.setVisible(true);
-		button2.setVisible(true);
+		toggleButtonsVisibility();
+	}
+	
+	public void toggleButtonsVisibility() {
+		button1.setVisible(!button1.isVisible());
+		button2.setVisible(!button2.isVisible());
 	}
 
 	public Label getInfo() {
