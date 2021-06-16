@@ -53,9 +53,9 @@
                   </Label>
                </children>
             </HBox>
-            <HBox id="board" prefHeight="414.0" prefWidth="1300.0" styleClass="board">
+            <HBox id="board" fx:id="board" prefHeight="414.0" prefWidth="1300.0" styleClass="board">
                <children>
-                  <VBox fx:id="player2Granary" prefHeight="200.0" prefWidth="170.0">
+                  <VBox fx:id="leftGranary" prefHeight="200.0" prefWidth="170.0">
                      <children>
                         <Label alignment="CENTER" prefHeight="74.0" prefWidth="170.0" text="0" textFill="#000fff" visible="false">
                            <font>
@@ -415,7 +415,7 @@
                         </HBox>
                      </children>
                   </VBox>
-                  <VBox fx:id="player1Granary" prefHeight="200.0" prefWidth="170.0">
+                  <VBox fx:id="rightGranary" prefHeight="200.0" prefWidth="170.0">
                      <children>
                         <StackPane>
                            <children>

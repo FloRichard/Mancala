@@ -22,7 +22,7 @@ import utils.I18N;
 public class ControllerMancala {
 	
 	@FXML
-	private VBox hole0, hole1, hole2, hole3, hole4, hole5, hole6, hole7, hole8, hole9, hole10, hole11, player1Granary, player2Granary;
+	private VBox hole0, hole1, hole2, hole3, hole4, hole5, hole6, hole7, hole8, hole9, hole10, hole11, rightGranary, leftGranary;
 	
 	@FXML
 	private Label info;
@@ -75,7 +75,7 @@ public class ControllerMancala {
 			     public void handle(MouseEvent event) {
 			         System.out.println("Hole clicked");
 			         if(isYourTurn) {
-				         manager.sendMove(pane.getId());
+		        		 manager.sendMove(pane.getId());
 			         }
 			     }
 			});
@@ -106,11 +106,28 @@ public class ControllerMancala {
 				info.textProperty().bind(I18N.createStringBinding("info.notYourTurn"));
 			
 			int seeds[] = response.getSeeds();
-			for (int i=0;i<seeds.length;i++) {
-				holesCount.get(i).setText(String.valueOf(seeds[i]));
+			if(this.playerNumber==1) {
+				for (int i=0;i<seeds.length;i++) {
+					holesCount.get(i).setText(String.valueOf(seeds[i]));
+				}
 			}
-			((Label) player1Granary.getChildren().get(1)).setText(String.valueOf(response.getPlayerOneGranaryCount()));
-			((Label) player2Granary.getChildren().get(0)).setText(String.valueOf(response.getPlayerTwoGranaryCount()));
+			//We reverse the side of the board for player 2
+			else {
+				for (int i=0;i<5;i++) {
+					holesCount.get(i).setText(String.valueOf(seeds[6+i]));
+				}
+				for (int i=5;i<seeds.length;i++) {
+					holesCount.get(i).setText(String.valueOf(seeds[5-i]));
+				}
+			}
+			if(response.getPlayerNumber()==1) {
+				((Label) rightGranary.getChildren().get(1)).setText(String.valueOf(response.getPlayerOneGranaryCount()));
+				((Label) leftGranary.getChildren().get(0)).setText(String.valueOf(response.getPlayerTwoGranaryCount()));
+			}
+			else {
+				((Label) rightGranary.getChildren().get(1)).setText(String.valueOf(response.getPlayerTwoGranaryCount()));
+				((Label) leftGranary.getChildren().get(0)).setText(String.valueOf(response.getPlayerOneGranaryCount()));
+			}
 			
 			updateSeeds();
 			
@@ -129,6 +146,14 @@ public class ControllerMancala {
 			else {
 				info.textProperty().bind(I18N.createStringBinding("info.notYourTurn"));
 				isYourTurn=false;
+			}
+			//Change id for player 2 so that the board is reversed
+			if(playerNumber==2) {
+				int cnt=11;
+				for (StackPane pane : holesPane) {
+					pane.setId(String.valueOf(cnt));
+					cnt--;
+				}
 			}
 		}
 	}
@@ -184,16 +209,16 @@ public class ControllerMancala {
 				}
 			}
 		}
-		StackPane child = (StackPane) player1Granary.getChildren().get(0);
+		StackPane child = (StackPane) rightGranary.getChildren().get(0);
 		ObservableList<Node> children = child.getChildren();
-		for(int j=0; j<=Integer.parseInt(((Label) player1Granary.getChildren().get(1)).getText()); j++) {
+		for(int j=0; j<=Integer.parseInt(((Label) rightGranary.getChildren().get(1)).getText()); j++) {
 			if(children.get(j) instanceof ImageView) {
 				children.get(j).getStyleClass().add("seed");
 			}
 		}
-		child = (StackPane) player2Granary.getChildren().get(1);
+		child = (StackPane) leftGranary.getChildren().get(1);
 		children = child.getChildren();
-		for(int j=0; j<=Integer.parseInt(((Label) player2Granary.getChildren().get(0)).getText()); j++) {
+		for(int j=0; j<=Integer.parseInt(((Label) leftGranary.getChildren().get(0)).getText()); j++) {
 			if(children.get(j) instanceof ImageView) {
 				children.get(j).getStyleClass().add("seed");
 			}
