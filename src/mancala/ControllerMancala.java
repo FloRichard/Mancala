@@ -69,6 +69,7 @@ public class ControllerMancala {
 			     public void handle(MouseEvent event) {
 			         System.out.println("Hole clicked");
 			         manager.sendMove(pane.getId());
+			         error.textProperty().bind(I18N.createStringBinding("info.move.confirm"));
 			         showConfirmButtons();
 			         event.consume();
 			     }
@@ -94,6 +95,7 @@ public class ControllerMancala {
 				toggleButtonsVisibility();
 		}
 		if(response.isBoard()) {
+			info.textProperty().bind(I18N.createStringBinding("info.yourTurn"));
 			int seeds[] = response.getSeeds();
 			for (int i=0;i<seeds.length;i++) {
 				holesCount.get(i).setText(String.valueOf(seeds[i]));
@@ -102,7 +104,6 @@ public class ControllerMancala {
 			((Label) player2Granary.getChildren().get(0)).setText(String.valueOf(response.getPlayerTwoGranaryCount()));
 			updateSeeds();
 			System.out.println(holesCount.get(11).getText());
-			error.textProperty().bind(I18N.createStringBinding("info.move.confirm"));
 		}
 		if(response.isInit()) {
 			this.isBeginning=response.isBeginning();
@@ -186,6 +187,7 @@ public class ControllerMancala {
 		        manager.sendConfirm("confirm");
 		        error.textProperty().bind(I18N.createStringBinding("empty"));
 		        toggleButtonsVisibility();
+		        info.textProperty().bind(I18N.createStringBinding("info.notYourTurn"));
 		    }
 		});
 		button2.setOnAction(new EventHandler<ActionEvent>() {
