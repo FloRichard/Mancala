@@ -104,13 +104,16 @@ public class ControllerMancala {
 				info.textProperty().bind(I18N.createStringBinding("info.yourTurn"));
 			else
 				info.textProperty().bind(I18N.createStringBinding("info.notYourTurn"));
+			
 			int seeds[] = response.getSeeds();
 			for (int i=0;i<seeds.length;i++) {
 				holesCount.get(i).setText(String.valueOf(seeds[i]));
 			}
 			((Label) player1Granary.getChildren().get(1)).setText(String.valueOf(response.getPlayerOneGranaryCount()));
 			((Label) player2Granary.getChildren().get(0)).setText(String.valueOf(response.getPlayerTwoGranaryCount()));
+			
 			updateSeeds();
+			
 			if(response.waitsForConfirmation()) {
 		         error.textProperty().bind(I18N.createStringBinding("info.move.confirm"));
 		         showConfirmButtons();
@@ -146,10 +149,14 @@ public class ControllerMancala {
 			
 			ObservableList<Node> seeds = stackPane.getChildren();
 			
-			for(int i=0; i<5; i++) {
-				if(seeds.get(i) instanceof ImageView) {
-					seeds.get(i).getStyleClass().add("seed");
-				}
+			int cnt=0;
+			for (Node seed : seeds) {
+				seed.getStyleClass().add("seed");
+				if(cnt<5)
+					seed.setVisible(true);
+				else
+					seed.setVisible(false);
+				cnt++;
 			}
 			
 			holesPane.add(stackPane);
@@ -168,12 +175,12 @@ public class ControllerMancala {
 			int nbSeeds = Integer.parseInt(holesCount.get(i).getText());
 			for(int j=0; j<=nbSeeds && j<=10; j++) {
 				if(children.get(j) instanceof ImageView) {
-					children.get(j).getStyleClass().add("seed");
+					children.get(j).setVisible(true);
 				}
 			}
 			for(int j=10;j>nbSeeds;j--) {
 				if(children.get(j) instanceof ImageView) {
-					children.get(j).getStyleClass().remove("seed");
+					children.get(j).setVisible(false);
 				}
 			}
 		}
