@@ -88,7 +88,6 @@ public class ControllerMancala {
 		if(response.isError()) {
 			error.textProperty().bind(I18N.createStringBinding(response.getErrorValue()));
 			error.getStyleClass().add("error");
-			toggleButtonsVisibility();
 		}
 		if(response.isBoard()) {
 			int seeds[] = response.getSeeds();
@@ -181,14 +180,14 @@ public class ControllerMancala {
 		button1.setOnAction(new EventHandler<ActionEvent>() {
 		    @Override public void handle(ActionEvent e) {
 		        manager.sendConfirm("confirm");
-		        error.setText("");
+		        error.textProperty().unbind();
 		        toggleButtonsVisibility();
 		    }
 		});
 		button2.setOnAction(new EventHandler<ActionEvent>() {
 		    @Override public void handle(ActionEvent e) {
 		        manager.sendConfirm("abort");
-		        error.setText("");
+		        error.textProperty().unbind();
 		        toggleButtonsVisibility();
 		    }
 		});
