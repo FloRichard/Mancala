@@ -26,6 +26,14 @@ public class SocketManager {
 		System.out.println("Listened");
 		return response;
 	}
+	
+	public void sendMove(String index) {
+		this.output.println("{\"type\":\"move\",\"index\":\""+index+"\"}");
+	}
+	
+	public void sendConfirm(String target) {
+		this.output.println("{\"type\":\"confirmation\",\"action\":\""+target+"\"}");
+	}
 
 	public Socket getSocket() {
 		return socket;

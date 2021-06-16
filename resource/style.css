@@ -16,3 +16,7 @@
 .seed{
 	-fx-image: url('seed.png');
 }
+
+.error{
+	-fx-text-inner-color: red;
+}

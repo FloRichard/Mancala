@@ -30,7 +30,7 @@
           </Menu>
           <Menu mnemonicParsing="false" text="Options">
             <items>
-                  <CheckMenuItem mnemonicParsing="false" text="Voir nombre de graines" onAction="#showNumbers"/>
+                  <CheckMenuItem mnemonicParsing="false" onAction="#showNumbers" text="Voir nombre de graines" />
                   <CheckMenuItem mnemonicParsing="false" text="Voir état plateau" />
                   <CheckMenuItem mnemonicParsing="false" text="Bruitages" />
                   <CheckMenuItem mnemonicParsing="false" text="Musiques" />
@@ -55,7 +55,7 @@
             </HBox>
             <HBox id="board" prefHeight="414.0" prefWidth="1300.0" styleClass="board">
                <children>
-                  <VBox prefHeight="200.0" prefWidth="170.0">
+                  <VBox fx:id="player2Granary" prefHeight="200.0" prefWidth="170.0">
                      <children>
                         <Label alignment="CENTER" prefHeight="74.0" prefWidth="170.0" text="0" textFill="#000fff" visible="false">
                            <font>
@@ -108,7 +108,7 @@
                                           <Font name="System Bold" size="16.0" />
                                        </font>
                                     </Label>
-                                    <StackPane id="test-stack">
+                                    <StackPane id="11">
                                        <children>
                                           <Circle id="circle-test" fill="DODGERBLUE" nodeOrientation="RIGHT_TO_LEFT" radius="75.0" stroke="BLACK" strokeType="INSIDE" styleClass="hole1" />
                                           <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-40.0" translateY="-30.0" />
@@ -133,7 +133,7 @@
                                           <Font name="System Bold" size="16.0" />
                                        </font>
                                     </Label>
-                                    <StackPane id="test-stack">
+                                    <StackPane id="10">
                                        <children>
                                           <Circle id="circle-test" fill="DODGERBLUE" nodeOrientation="RIGHT_TO_LEFT" radius="75.0" stroke="BLACK" strokeType="INSIDE" styleClass="hole1" />
                                           <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-40.0" translateY="-30.0" />
@@ -158,7 +158,7 @@
                                           <Font name="System Bold" size="16.0" />
                                        </font>
                                     </Label>
-                                    <StackPane id="test-stack">
+                                    <StackPane id="9">
                                        <children>
                                           <Circle id="circle-test" fill="DODGERBLUE" nodeOrientation="RIGHT_TO_LEFT" radius="75.0" stroke="BLACK" strokeType="INSIDE" styleClass="hole1" />
                                           <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-40.0" translateY="-30.0" />
@@ -183,7 +183,7 @@
                                           <Font name="System Bold" size="16.0" />
                                        </font>
                                     </Label>
-                                    <StackPane id="test-stack">
+                                    <StackPane id="8">
                                        <children>
                                           <Circle id="circle-test" fill="DODGERBLUE" nodeOrientation="RIGHT_TO_LEFT" radius="75.0" stroke="BLACK" strokeType="INSIDE" styleClass="hole1" />
                                           <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-40.0" translateY="-30.0" />
@@ -208,7 +208,7 @@
                                           <Font name="System Bold" size="16.0" />
                                        </font>
                                     </Label>
-                                    <StackPane id="test-stack">
+                                    <StackPane id="7">
                                        <children>
                                           <Circle id="circle-test" fill="DODGERBLUE" nodeOrientation="RIGHT_TO_LEFT" radius="75.0" stroke="BLACK" strokeType="INSIDE" styleClass="hole1" />
                                           <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-40.0" translateY="-30.0" />
@@ -233,7 +233,7 @@
                                           <Font name="System Bold" size="16.0" />
                                        </font>
                                     </Label>
-                                    <StackPane id="test-stack">
+                                    <StackPane id="6">
                                        <children>
                                           <Circle id="circle-test" fill="DODGERBLUE" nodeOrientation="RIGHT_TO_LEFT" radius="75.0" stroke="BLACK" strokeType="INSIDE" styleClass="hole1" />
                                           <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-40.0" translateY="-30.0" />
@@ -266,7 +266,7 @@
                                           <Font name="System Bold" size="16.0" />
                                        </font>
                                     </Label>
-                                    <StackPane id="test-stack">
+                                    <StackPane id="0">
                                        <children>
                                           <Circle id="circle-test" fill="DODGERBLUE" nodeOrientation="RIGHT_TO_LEFT" radius="75.0" stroke="BLACK" strokeType="INSIDE" styleClass="hole1" />
                                           <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-40.0" translateY="-30.0" />
@@ -291,7 +291,7 @@
                                           <Font name="System Bold" size="16.0" />
                                        </font>
                                     </Label>
-                                    <StackPane id="test-stack">
+                                    <StackPane id="1">
                                        <children>
                                           <Circle id="circle-test" fill="DODGERBLUE" nodeOrientation="RIGHT_TO_LEFT" radius="75.0" stroke="BLACK" strokeType="INSIDE" styleClass="hole1" />
                                           <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-40.0" translateY="-30.0" />
@@ -316,7 +316,7 @@
                                           <Font name="System Bold" size="16.0" />
                                        </font>
                                     </Label>
-                                    <StackPane id="test-stack">
+                                    <StackPane id="2">
                                        <children>
                                           <Circle id="circle-test" fill="DODGERBLUE" nodeOrientation="RIGHT_TO_LEFT" radius="75.0" stroke="BLACK" strokeType="INSIDE" styleClass="hole1" />
                                           <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-40.0" translateY="-30.0" />
@@ -341,7 +341,7 @@
                                           <Font name="System Bold" size="16.0" />
                                        </font>
                                     </Label>
-                                    <StackPane id="test-stack">
+                                    <StackPane id="3">
                                        <children>
                                           <Circle id="circle-test" fill="DODGERBLUE" nodeOrientation="RIGHT_TO_LEFT" radius="75.0" stroke="BLACK" strokeType="INSIDE" styleClass="hole1" />
                                           <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-40.0" translateY="-30.0" />
@@ -366,7 +366,7 @@
                                           <Font name="System Bold" size="16.0" />
                                        </font>
                                     </Label>
-                                    <StackPane id="test-stack">
+                                    <StackPane id="4">
                                        <children>
                                           <Circle id="circle-test" fill="DODGERBLUE" nodeOrientation="RIGHT_TO_LEFT" radius="75.0" stroke="BLACK" strokeType="INSIDE" styleClass="hole1" />
                                           <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-40.0" translateY="-30.0" />
@@ -391,7 +391,7 @@
                                           <Font name="System Bold" size="16.0" />
                                        </font>
                                     </Label>
-                                    <StackPane id="test-stack">
+                                    <StackPane id="5">
                                        <children>
                                           <Circle id="circle-test" fill="DODGERBLUE" nodeOrientation="RIGHT_TO_LEFT" radius="75.0" stroke="BLACK" strokeType="INSIDE" styleClass="hole1" />
                                           <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" translateX="-40.0" translateY="-30.0" />
@@ -415,7 +415,7 @@
                         </HBox>
                      </children>
                   </VBox>
-                  <VBox prefHeight="200.0" prefWidth="170.0">
+                  <VBox fx:id="player1Granary" prefHeight="200.0" prefWidth="170.0">
                      <children>
                         <StackPane>
                            <children>
@@ -463,7 +463,7 @@
             </HBox>
             <VBox>
                <children>
-                  <Label fx:id="error" alignment="CENTER" contentDisplay="CENTER" layoutY="514.0" prefHeight="75.0" prefWidth="1300.0">
+                  <Label fx:id="error" alignment="CENTER" contentDisplay="CENTER" layoutY="514.0" prefHeight="75.0" prefWidth="1300.0" styleClass="error" textFill="RED">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -475,13 +475,13 @@
             </VBox>
             <HBox alignment="CENTER">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="84.0" text="Button">
+                  <Button fx:id="button1" mnemonicParsing="false" prefHeight="48.0" prefWidth="84.0" text="Button" visible="false">
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
                   </Button>
                   <Region layoutX="413.0" layoutY="595.0" prefHeight="48.0" prefWidth="154.0" />
-                  <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="84.0" text="Button">
+                  <Button fx:id="button2" mnemonicParsing="false" prefHeight="48.0" prefWidth="84.0" text="Button" visible="false">
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>

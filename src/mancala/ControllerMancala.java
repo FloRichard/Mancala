@@ -11,8 +11,10 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import utils.I18N;
@@ -20,13 +22,16 @@ import utils.I18N;
 public class ControllerMancala {
 	
 	@FXML
-	private VBox hole0, hole1, hole2, hole3, hole4, hole5, hole6, hole7, hole8, hole9, hole10, hole11;
+	private VBox hole0, hole1, hole2, hole3, hole4, hole5, hole6, hole7, hole8, hole9, hole10, hole11, player1Granary, player2Granary;
 	
 	@FXML
 	private Label info;
 	
 	@FXML
 	private Label error;
+	
+	@FXML 
+	private Button button1, button2;
 	
 	private List<Label> holesCount = new ArrayList<Label>();
 	
@@ -58,6 +63,18 @@ public class ControllerMancala {
 			}
 		});
 		
+		for (StackPane pane : holesPane) {
+			pane.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+			     @Override
+			     public void handle(MouseEvent event) {
+			         System.out.println("Hole clicked");
+			         manager.sendMove(pane.getId());
+			         showConfirmButtons();
+			         event.consume();
+			     }
+			});
+		}
+		
 		Platform.runLater(() -> {
 			socketHandler.start();
 		});
@@ -66,13 +83,21 @@ public class ControllerMancala {
 	public void handleResponse(ServerOutputController response) {
 		System.out.println(response.getRawJSONOutput());
 		if(response.isInfo()) {
-			
+			info.textProperty().bind(I18N.createStringBinding(response.getInfoValue()));
 		}
 		if(response.isError()) {
 			error.textProperty().bind(I18N.createStringBinding(response.getErrorValue()));
+			error.getStyleClass().add("error");
 		}
 		if(response.isBoard()) {
-			
+			int seeds[] = response.getSeeds();
+			for (int i=0;i<seeds.length;i++) {
+				holesCount.get(i).setText(String.valueOf(seeds[i]));
+			}
+			((Label) player1Granary.getChildren().get(1)).setText(String.valueOf(response.getPlayerOneGranaryCount()));
+			((Label) player2Granary.getChildren().get(0)).setText(String.valueOf(response.getPlayerTwoGranaryCount()));
+			updateSeeds();
+			error.textProperty().bind(I18N.createStringBinding("info.move.confirm"));
 		}
 		if(response.isInit()) {
 			this.isBeginning=response.isBeginning();
@@ -114,6 +139,54 @@ public class ControllerMancala {
 		for (Label label : holesCount) {
 			label.setVisible(!label.isVisible());
 		}
+	}
+	
+	public void updateSeeds() {
+		for (int i=0;i<holesPane.size();i++) {
+			ObservableList<Node> children = holesPane.get(i).getChildren();
+			for(int j=0; j<=Integer.parseInt(holesCount.get(i).getText()); j++) {
+				if(children.get(j) instanceof ImageView) {
+					children.get(j).getStyleClass().add("seed");
+				}
+			}	
+		}
+		StackPane child = (StackPane) player1Granary.getChildren().get(0);
+		ObservableList<Node> children = child.getChildren();
+		for(int j=0; j<=Integer.parseInt(((Label) player1Granary.getChildren().get(1)).getText()); j++) {
+			if(children.get(j) instanceof ImageView) {
+				children.get(j).getStyleClass().add("seed");
+			}
+		}
+		child = (StackPane) player2Granary.getChildren().get(1);
+		children = child.getChildren();
+		for(int j=0; j<=Integer.parseInt(((Label) player2Granary.getChildren().get(0)).getText()); j++) {
+			if(children.get(j) instanceof ImageView) {
+				children.get(j).getStyleClass().add("seed");
+			}
+		}
+	}
+	
+	public void showConfirmButtons() {
+		button1.textProperty().bind(I18N.createStringBinding("button.confirm.yes"));
+		button2.textProperty().bind(I18N.createStringBinding("button.confirm.cancel"));
+		
+		button1.setOnAction(new EventHandler<ActionEvent>() {
+		    @Override public void handle(ActionEvent e) {
+		        manager.sendConfirm("confirm");
+		        button1.setVisible(false);
+		        button2.setVisible(false);
+		    }
+		});
+		button2.setOnAction(new EventHandler<ActionEvent>() {
+		    @Override public void handle(ActionEvent e) {
+		        manager.sendConfirm("abort");
+		        button1.setVisible(false);
+		        button2.setVisible(false);
+		    }
+		});
+		
+		button1.setVisible(true);
+		button2.setVisible(true);
 	}
 
 	public Label getInfo() {
