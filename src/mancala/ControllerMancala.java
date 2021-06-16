@@ -149,10 +149,13 @@ public class ControllerMancala {
 			}
 			//Change id for player 2 so that the board is reversed
 			if(playerNumber==2) {
-				int cnt=11;
-				for (StackPane pane : holesPane) {
-					pane.setId(String.valueOf(cnt));
-					cnt--;
+				for(int i=0; i<holesPane.size(); i++) {
+					if(i<6) {
+						holesPane.get(i).setId(String.valueOf(6+i));
+					}
+					else {
+						holesPane.get(i).setId(String.valueOf(i-6));
+					}
 				}
 			}
 		}
