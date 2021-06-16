@@ -98,6 +98,7 @@ public class ControllerMancala {
 			((Label) player1Granary.getChildren().get(1)).setText(String.valueOf(response.getPlayerOneGranaryCount()));
 			((Label) player2Granary.getChildren().get(0)).setText(String.valueOf(response.getPlayerTwoGranaryCount()));
 			updateSeeds();
+			System.out.println(holesCount.get(11).getText());
 			error.textProperty().bind(I18N.createStringBinding("info.move.confirm"));
 		}
 		if(response.isInit()) {
@@ -145,11 +146,17 @@ public class ControllerMancala {
 	public void updateSeeds() {
 		for (int i=0;i<holesPane.size();i++) {
 			ObservableList<Node> children = holesPane.get(i).getChildren();
-			for(int j=0; j<=Integer.parseInt(holesCount.get(i).getText()); j++) {
+			int nbSeeds = Integer.parseInt(holesCount.get(i).getText());
+			for(int j=0; j<=nbSeeds && j<=10; j++) {
 				if(children.get(j) instanceof ImageView) {
 					children.get(j).getStyleClass().add("seed");
 				}
-			}	
+			}
+			for(int j=10;j>nbSeeds;j--) {
+				if(children.get(j) instanceof ImageView) {
+					children.get(j).getStyleClass().remove("seed");
+				}
+			}
 		}
 		StackPane child = (StackPane) player1Granary.getChildren().get(0);
 		ObservableList<Node> children = child.getChildren();
@@ -174,12 +181,14 @@ public class ControllerMancala {
 		button1.setOnAction(new EventHandler<ActionEvent>() {
 		    @Override public void handle(ActionEvent e) {
 		        manager.sendConfirm("confirm");
+		        error.setText("");
 		        toggleButtonsVisibility();
 		    }
 		});
 		button2.setOnAction(new EventHandler<ActionEvent>() {
 		    @Override public void handle(ActionEvent e) {
 		        manager.sendConfirm("abort");
+		        error.setText("");
 		        toggleButtonsVisibility();
 		    }
 		});
