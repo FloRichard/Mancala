@@ -113,11 +113,11 @@ public class ControllerMancala {
 			}
 			//We reverse the side of the board for player 2
 			else {
-				for (int i=0;i<5;i++) {
+				for (int i=0;i<6;i++) {
 					holesCount.get(i).setText(String.valueOf(seeds[6+i]));
 				}
-				for (int i=5;i<seeds.length;i++) {
-					holesCount.get(i).setText(String.valueOf(seeds[5-i]));
+				for (int i=6;i<seeds.length;i++) {
+					holesCount.get(i).setText(String.valueOf(seeds[i-6]));
 				}
 			}
 			if(response.getPlayerNumber()==1) {
