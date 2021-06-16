@@ -88,6 +88,10 @@ public class ControllerMancala {
 		if(response.isError()) {
 			error.textProperty().bind(I18N.createStringBinding(response.getErrorValue()));
 			error.getStyleClass().add("error");
+			if(response.getErrorValue().equals("error.notYourTurn") || response.getErrorValue().equals("error.isStarving")
+				|| response.getErrorValue().equals("error.notYourArea") || response.getErrorValue().equals("error.emptyHole") 
+				|| response.getErrorValue().equals("error.notFeedingMove"))
+				toggleButtonsVisibility();
 		}
 		if(response.isBoard()) {
 			int seeds[] = response.getSeeds();
@@ -180,14 +184,14 @@ public class ControllerMancala {
 		button1.setOnAction(new EventHandler<ActionEvent>() {
 		    @Override public void handle(ActionEvent e) {
 		        manager.sendConfirm("confirm");
-		        error.textProperty().unbind();
+		        error.textProperty().bind(I18N.createStringBinding("empty"));
 		        toggleButtonsVisibility();
 		    }
 		});
 		button2.setOnAction(new EventHandler<ActionEvent>() {
 		    @Override public void handle(ActionEvent e) {
 		        manager.sendConfirm("abort");
-		        error.textProperty().unbind();
+		        error.textProperty().bind(I18N.createStringBinding("empty"));
 		        toggleButtonsVisibility();
 		    }
 		});
