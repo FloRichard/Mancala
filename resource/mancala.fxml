@@ -43,13 +43,21 @@
          <children>
             <HBox prefHeight="75.0" prefWidth="1300.0">
                <children>
-                  <Label fx:id="info" alignment="CENTER" contentDisplay="CENTER" minWidth="-Infinity" prefHeight="87.0" prefWidth="1300.0">
+                  <Label fx:id="info" alignment="CENTER" contentDisplay="CENTER" minWidth="-Infinity" prefHeight="75.0" prefWidth="1086.0">
                      <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                        <Insets bottom="10.0" left="220.0" right="10.0" top="10.0" />
                      </padding>
                      <font>
                         <Font size="24.0" />
                      </font>
+                  </Label>
+                  <Label fx:id="score" alignment="CENTER" contentDisplay="CENTER" minWidth="-Infinity" prefHeight="75.0" prefWidth="215.0">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
                   </Label>
                </children>
             </HBox>

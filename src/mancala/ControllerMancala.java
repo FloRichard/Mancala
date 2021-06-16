@@ -5,6 +5,8 @@ import java.util.Collections;
 import java.util.List;
 
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;
@@ -29,6 +31,9 @@ public class ControllerMancala {
 	
 	@FXML
 	private Label error;
+	
+	@FXML
+	private Label score;
 	
 	@FXML 
 	private Button button1, button2;
@@ -65,9 +70,35 @@ public class ControllerMancala {
 			}
 		});
 		
+		//Display number of seeds if a hole contains more than 10 seeds
 		for (Label label: holesCount) {
-			label.setVisible(true);
+			label.textProperty().addListener(new ChangeListener<String>() {
+	            @Override
+	            public void changed(ObservableValue<? extends String> ov, String t, String t1) {
+	            	if(Integer.parseInt(t1)>10) {
+	            		label.setVisible(true);
+	            	}         		
+	            }
+	        });
 		}
+		
+		((Label)rightGranary.getChildren().get(1)).textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> ov, String t, String t1) {
+            	if(Integer.parseInt(t1)>23) {
+            		((Label)rightGranary.getChildren().get(1)).setVisible(true);
+            	}         		
+            }
+        });
+		
+		((Label)leftGranary.getChildren().get(0)).textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> ov, String t, String t1) {
+            	if(Integer.parseInt(t1)>23) {
+            		((Label)leftGranary.getChildren().get(0)).setVisible(true);
+            	}         		
+            }
+        });
 		
 		for (StackPane pane : holesPane) {
 			pane.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
@@ -120,14 +151,19 @@ public class ControllerMancala {
 					holesCount.get(i).setText(String.valueOf(seeds[i-6]));
 				}
 			}
-			if(response.getPlayerNumber()==1) {
-				((Label) rightGranary.getChildren().get(1)).setText(String.valueOf(response.getPlayerOneGranaryCount()));
-				((Label) leftGranary.getChildren().get(0)).setText(String.valueOf(response.getPlayerTwoGranaryCount()));
-			}
-			else {
-				((Label) rightGranary.getChildren().get(1)).setText(String.valueOf(response.getPlayerTwoGranaryCount()));
-				((Label) leftGranary.getChildren().get(0)).setText(String.valueOf(response.getPlayerOneGranaryCount()));
-			}
+//			if(response.getPlayerNumber()==1) {
+			((Label) rightGranary.getChildren().get(1)).setText(String.valueOf(response.getPlayerTwoGranaryCount()));
+			((Label) leftGranary.getChildren().get(0)).setText(String.valueOf(response.getPlayerOneGranaryCount()));
+//			}
+//			else {
+//				((Label) rightGranary.getChildren().get(1)).setText(String.valueOf(response.getPlayerTwoGranaryCount()));
+//				((Label) leftGranary.getChildren().get(0)).setText(String.valueOf(response.getPlayerOneGranaryCount()));
+//			}
+			response.setPlayerTwoScore(2);
+			if(this.playerNumber==1) 
+				score.textProperty().bind(I18N.createStringBinding("score",response.getPlayerOneScore(),response.getPlayerTwoScore()));
+			else
+				score.textProperty().bind(I18N.createStringBinding("score",response.getPlayerTwoScore(),response.getPlayerOneScore()));
 			
 			updateSeeds();
 			
@@ -189,12 +225,31 @@ public class ControllerMancala {
 			
 			holesPane.add(stackPane);
 		}
+		
+		StackPane child = (StackPane) rightGranary.getChildren().get(0);
+		ObservableList<Node> children = child.getChildren();
+		for(int j=0; j<24; j++) {
+			if(children.get(j) instanceof ImageView) {
+				children.get(j).getStyleClass().add("seed");
+				children.get(j).setVisible(false);
+			}
+		}
+		child = (StackPane) leftGranary.getChildren().get(1);
+		children = child.getChildren();
+		for(int j=0; j<24; j++) {
+			if(children.get(j) instanceof ImageView) {
+				children.get(j).getStyleClass().add("seed");
+				children.get(j).setVisible(false);
+			}
+		}
 	}
 	
 	public void showNumbers(ActionEvent event) {
 		for (Label label : holesCount) {
 			label.setVisible(!label.isVisible());
 		}
+		((Label)rightGranary.getChildren().get(1)).setVisible(true);
+		((Label)leftGranary.getChildren().get(0)).setVisible(true);
 	}
 	
 	public void updateSeeds() {

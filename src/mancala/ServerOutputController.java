@@ -6,6 +6,8 @@ import com.google.gson.JsonParser;
 
 public class ServerOutputController {
 
+	private static final String PLAYER2_SCORE = "playerTwoScore";
+	private static final String PLAYER1_SCORE = "playerOneScore";
 	private static final String NEED_CONFIRMATION = "needConfirmation";
 	private static final String PLAYER_NUMBER = "playerNumber";
 	private static final String IS_BEGINNING = "isBeginning";
@@ -39,6 +41,8 @@ public class ServerOutputController {
 	private boolean isInit;
 	private int playerNumber;
 	private boolean isBeginning;
+	private int playerOneScore;
+	private int playerTwoScore;
 	
 	public ServerOutputController(String rawJSONOutput) {
 		this.rawJSONOutput = rawJSONOutput;
@@ -84,6 +88,8 @@ public class ServerOutputController {
 			
 			this.playerOneGranaryCount = jsonObject.get(PLAYER_ONE_GRANARY_COUNT).getAsInt();
 			this.playerTwoGranaryCount = jsonObject.get(PLAYER_TWO_GRANARY_COUNT).getAsInt();
+			this.playerOneScore = jsonObject.get(PLAYER1_SCORE).getAsInt();
+			this.playerTwoScore = jsonObject.get(PLAYER2_SCORE).getAsInt();
 			
 			break;
 		default:
@@ -229,6 +235,22 @@ public class ServerOutputController {
 
 	public void setWaitsForConfirmation(boolean waitsForConfirmation) {
 		this.waitsForConfirmation = waitsForConfirmation;
+	}
+
+	public int getPlayerOneScore() {
+		return playerOneScore;
+	}
+
+	public void setPlayerOneScore(int playerOneScore) {
+		this.playerOneScore = playerOneScore;
+	}
+
+	public int getPlayerTwoScore() {
+		return playerTwoScore;
+	}
+
+	public void setPlayerTwoScore(int playerTwoScore) {
+		this.playerTwoScore = playerTwoScore;
 	}
 	
 }
