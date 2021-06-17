@@ -15,7 +15,6 @@ public class ServerOutputController {
 	private static final String PLAYER_TWO_GRANARY_COUNT = "playerTwoGranaryCount";
 	private static final String PLAYER_ONE_GRANARY_COUNT = "playerOneGranaryCount";
 	private static final String SEEDS = "seeds";
-	private static final String TARGET = "target";
 	private static final String VALUE = "value";
 	private static final String TYPE = "type";
 	private static final String BOARD = "board";
@@ -26,7 +25,6 @@ public class ServerOutputController {
 	
 	private boolean isInfo;
 	private String infoValue;
-	private String target;
 	
 	private boolean isError;
 	private String errorValue;
@@ -67,7 +65,6 @@ public class ServerOutputController {
 		case INFO:
 			this.isInfo=true;
 			this.infoValue=jsonObject.get(VALUE).getAsString();
-			this.target=jsonObject.get(TARGET).getAsString();
 			break;
 			
 		case ERROR:
@@ -125,16 +122,6 @@ public class ServerOutputController {
 
 	public void setInfoValue(String infoValue) {
 		this.infoValue = infoValue;
-	}
-
-
-	public String getTarget() {
-		return target;
-	}
-
-
-	public void setTarget(String target) {
-		this.target = target;
 	}
 
 
