@@ -285,7 +285,7 @@ public class ControllerMancala {
 				children.get(j).setVisible(true);
 			}
 		}
-		for(int j=23;j>Integer.parseInt(((Label) leftGranary.getChildren().get(1)).getText());j--) {
+		for(int j=23;j>Integer.parseInt(((Label) leftGranary.getChildren().get(0)).getText());j--) {
 			if(children.get(j) instanceof ImageView) {
 				children.get(j).setVisible(false);
 			}
