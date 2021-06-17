@@ -33,7 +33,7 @@
                   <CheckMenuItem mnemonicParsing="false" onAction="#enableHover" text="Voir nombre de graines" />
                   <CheckMenuItem mnemonicParsing="false" onAction="#showNumbers" text="Voir état plateau" />
                   <CheckMenuItem mnemonicParsing="false" text="Bruitages" />
-                  <CheckMenuItem mnemonicParsing="false" text="Musiques" />
+                  <CheckMenuItem mnemonicParsing="false" onAction="#toggleMusic" text="Musiques" />
             </items>
           </Menu>
             <Menu mnemonicParsing="false" text="À propos" />

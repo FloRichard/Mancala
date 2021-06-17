@@ -1,5 +1,6 @@
 package mancala;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -23,7 +24,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.WindowEvent;
+import javafx.util.Duration;
 import utils.I18N;
 
 public class ControllerMancala {
@@ -53,9 +57,13 @@ public class ControllerMancala {
 	
 	private boolean isBeginning;
 	
-	private boolean isYourTurn;
+	private boolean isYourTurn;	
 	
-	private boolean hoverIsEnabled=false, showNumbersIsEnabled=false;
+	private URL resource;
+	
+	private MediaPlayer a;
+	
+	private boolean hoverIsEnabled=false, showNumbersIsEnabled=false, isMusicEnabled=false;
 
 	@FXML
 	public void initialize() {
@@ -67,6 +75,17 @@ public class ControllerMancala {
 		info.textProperty().bind(I18N.createStringBinding("info.waiting"));
 		
 		HandleSocketService socketHandler = new HandleSocketService(manager);
+		
+		resource = getClass().getClassLoader().getResource("music.mp3");
+		a = new MediaPlayer(new Media(resource.toString()));
+		
+		//Make the music looping
+		a.setOnEndOfMedia(new Runnable() {
+			public void run() {
+				a.seek(Duration.ZERO);
+			}
+		});
+		a.setVolume(0.05);
 		
 		Platform.runLater(() -> {
 			initializeHandlersListeners(socketHandler);
@@ -442,6 +461,14 @@ public class ControllerMancala {
 	
 	public void enableHover() {
 		hoverIsEnabled=!hoverIsEnabled;
+	}
+	
+	public void toggleMusic() {
+		if(isMusicEnabled)
+			  a.pause();
+		else
+			  a.play();
+		isMusicEnabled=!isMusicEnabled;
 	}
 	
 	public Label getInfo() {
