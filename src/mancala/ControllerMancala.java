@@ -422,6 +422,7 @@ public class ControllerMancala {
 		}
 		
 		StackPane child = (StackPane) rightGranary.getChildren().get(0);
+		((Label) rightGranary.getChildren().get(1)).setText("0");
 		ObservableList<Node> children = child.getChildren();
 		for(int j=0; j<24; j++) {
 			if(children.get(j) instanceof ImageView) {
@@ -430,6 +431,7 @@ public class ControllerMancala {
 			}
 		}
 		child = (StackPane) leftGranary.getChildren().get(1);
+		((Label) leftGranary.getChildren().get(0)).setText("0");
 		children = child.getChildren();
 		for(int j=0; j<24; j++) {
 			if(children.get(j) instanceof ImageView) {
