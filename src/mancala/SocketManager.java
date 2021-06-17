@@ -42,6 +42,10 @@ public class SocketManager {
 		this.output.println("{\"type\":\"new\"}");
 	}
 
+	public void sendSurrend() {
+		this.output.println("{\"type\":\"surrend\"}");
+	}
+
 	public Socket getSocket() {
 		return socket;
 	}

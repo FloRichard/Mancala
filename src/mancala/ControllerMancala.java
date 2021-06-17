@@ -26,6 +26,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.web.WebView;
 import javafx.stage.WindowEvent;
 import javafx.util.Duration;
 import utils.I18N;
@@ -59,11 +60,11 @@ public class ControllerMancala {
 	
 	private boolean isYourTurn;	
 	
-	private URL resource;
-	
 	private MediaPlayer a;
 	
-	private boolean hoverIsEnabled=false, showNumbersIsEnabled=false, isMusicEnabled=false;
+	private boolean hoverIsEnabled=false, showNumbersIsEnabled=false, isMusicEnabled=false, isSoundEnabled=false;
+	
+	private MediaPlayer applause, cancel, confirm, lose, seed, win; 
 
 	@FXML
 	public void initialize() {
@@ -76,9 +77,19 @@ public class ControllerMancala {
 		
 		HandleSocketService socketHandler = new HandleSocketService(manager);
 		
-		resource = getClass().getClassLoader().getResource("music.mp3");
-		a = new MediaPlayer(new Media(resource.toString()));
+		loadMusicAndSounds();
 		
+		Platform.runLater(() -> {
+			initializeHandlersListeners(socketHandler);
+			socketHandler.start();
+		});
+	}
+
+	private void loadMusicAndSounds() {
+		//Load music
+		URL resource = getClass().getClassLoader().getResource("music.mp3");
+		a = new MediaPlayer(new Media(resource.toString()));
+
 		//Make the music looping
 		a.setOnEndOfMedia(new Runnable() {
 			public void run() {
@@ -87,10 +98,19 @@ public class ControllerMancala {
 		});
 		a.setVolume(0.05);
 		
-		Platform.runLater(() -> {
-			initializeHandlersListeners(socketHandler);
-			socketHandler.start();
-		});
+		//Load sound effects
+		resource = getClass().getClassLoader().getResource("applause.wav");
+		applause = new MediaPlayer(new Media(resource.toString()));
+		resource = getClass().getClassLoader().getResource("cancel.wav");
+		cancel = new MediaPlayer(new Media(resource.toString()));
+		resource = getClass().getClassLoader().getResource("confirm.wav");
+		confirm = new MediaPlayer(new Media(resource.toString()));
+		resource = getClass().getClassLoader().getResource("lose.wav");
+		lose = new MediaPlayer(new Media(resource.toString()));
+		resource = getClass().getClassLoader().getResource("seed.wav");
+		seed = new MediaPlayer(new Media(resource.toString()));
+		resource = getClass().getClassLoader().getResource("win.wav");
+		win = new MediaPlayer(new Media(resource.toString()));
 	}
 
 	public void initializeHandlersListeners(HandleSocketService socketHandler) {
@@ -202,6 +222,11 @@ public class ControllerMancala {
 			     @Override
 			     public void handle(MouseEvent event) {
 			         if(isYourTurn) {
+			        	 if(isSoundEnabled) {
+			        		 seed.setStartTime(Duration.ZERO);
+			        		 seed.seek(Duration.ZERO);
+			        		 seed.play(); 
+			        	 }
 		        		 manager.sendMove(holesPane.get(index).getId());
 			         }
 			     }
@@ -229,16 +254,33 @@ public class ControllerMancala {
 		if(response.isInfo() && response.getInfoValue().contains("round")) {
 			info.textProperty().bind(I18N.createStringBinding(response.getInfoValue()));
 			Alert alert = new Alert(AlertType.INFORMATION);
-			if(response.getInfoValue().contains("win"))
+			if(response.getInfoValue().contains("win")) {
 				alert.setTitle(I18N.get("info.win.greets"));
-			else
+				if(isSoundEnabled) {
+					win.setStartTime(Duration.ZERO);
+	        		win.seek(Duration.ZERO);
+					win.play();
+				}
+			}
+			else {
 				alert.setTitle(I18N.get("info.lose.greets"));
+				if(isSoundEnabled) {
+					lose.setStartTime(Duration.ZERO);
+	        		lose.seek(Duration.ZERO);
+					lose.play();
+				}
+			}
 	        alert.setHeaderText(I18N.get(response.getInfoValue()));
 	        alert.setContentText(I18N.get("info.next"));
 	        alert.showAndWait();
 	        manager.sendContinue();
 		}
 		if(response.isInfo() && response.getInfoValue().contains("game")) {
+			if(isSoundEnabled) {
+				applause.setStartTime(Duration.ZERO);
+       		 	applause.seek(Duration.ZERO);
+				applause.play();
+			}
 			info.textProperty().bind(I18N.createStringBinding(response.getInfoValue()));
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			if(response.getInfoValue().contains("win"))
@@ -349,14 +391,11 @@ public class ControllerMancala {
 			
 			ObservableList<Node> seeds = stackPane.getChildren();
 			
-			int cnt=0;
 			for (Node seed : seeds) {
-				seed.getStyleClass().add("seed");
-				if(cnt<5)
-					seed.setVisible(true);
-				else
+				if(seed instanceof ImageView) {
+					seed.getStyleClass().add("seed");
 					seed.setVisible(false);
-				cnt++;
+				}
 			}
 			
 			holesPane.add(stackPane);
@@ -429,6 +468,11 @@ public class ControllerMancala {
 		    @Override public void handle(ActionEvent e) {
 		        manager.sendConfirm("confirm");
 		        error.textProperty().bind(I18N.createStringBinding("empty"));
+		        if(isSoundEnabled) {
+		        	confirm.setStartTime(Duration.ZERO);
+		        	confirm.seek(Duration.ZERO);
+		        	confirm.play();
+		        }
 		        toggleButtonsVisibility();
 		    }
 		});
@@ -436,6 +480,11 @@ public class ControllerMancala {
 		    @Override public void handle(ActionEvent e) {
 		        manager.sendConfirm("abort");
 		        error.textProperty().bind(I18N.createStringBinding("empty"));
+		        if(isSoundEnabled) {
+		        	cancel.setStartTime(Duration.ZERO);
+		        	cancel.seek(Duration.ZERO);
+		        	cancel.play();
+		        }
 		        toggleButtonsVisibility();
 		    }
 		});
@@ -469,6 +518,29 @@ public class ControllerMancala {
 		else
 			  a.play();
 		isMusicEnabled=!isMusicEnabled;
+	}
+	
+	public void toggleSound() {
+		isSoundEnabled=!isSoundEnabled;
+	}
+	
+	public void displayRules() {
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle(I18N.get("rules.title"));
+        alert.setHeaderText(I18N.get("rules.header"));
+        WebView webView = new WebView();
+        webView.getEngine().loadContent(I18N.get("rules.content"));
+        webView.setPrefSize(500, 600);
+        alert.getDialogPane().setContent(webView);;
+        alert.showAndWait();
+	}
+	
+	public void surrendRound() {
+		manager.sendSurrend();
+	}
+	
+	public void newMatch() {
+		manager.sendNewGame();
 	}
 	
 	public Label getInfo() {

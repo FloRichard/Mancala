@@ -17,22 +17,22 @@
             <items>
               <MenuItem mnemonicParsing="false" text="Charger partie" />
                   <MenuItem mnemonicParsing="false" text="Sauvegarder partie" />
-                  <MenuItem mnemonicParsing="false" text="Abandonner partie" />
-                  <MenuItem mnemonicParsing="false" text="Nouveau match" />
+                  <MenuItem mnemonicParsing="false" text="Abandonner partie" onAction="#surrendRound"/>
+                  <MenuItem mnemonicParsing="false" text="Nouveau match" onAction="#newMatch"/>
                   <MenuItem mnemonicParsing="false" text="Arrêter match" />
                   <MenuItem mnemonicParsing="false" text="Annuler dernier coup" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Règles">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Voir la règle" />
+                  <MenuItem mnemonicParsing="false" text="Voir la règle" onAction="#displayRules"/>
                </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Options">
             <items>
                   <CheckMenuItem mnemonicParsing="false" onAction="#enableHover" text="Voir nombre de graines" />
                   <CheckMenuItem mnemonicParsing="false" onAction="#showNumbers" text="Voir état plateau" />
-                  <CheckMenuItem mnemonicParsing="false" text="Bruitages" />
+                  <CheckMenuItem mnemonicParsing="false" onAction="#toggleSound" text="Bruitages" />
                   <CheckMenuItem mnemonicParsing="false" onAction="#toggleMusic" text="Musiques" />
             </items>
           </Menu>
