@@ -37,6 +37,10 @@ public class SocketManager {
 	public void sendContinue() {
 		this.output.println("{\"type\":\"endRoundConfirmation\"}");
 	}
+	
+	public void sendNewGame() {
+		this.output.println("{\"type\":\"new\"}");
+	}
 
 	public Socket getSocket() {
 		return socket;

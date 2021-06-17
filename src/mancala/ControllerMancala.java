@@ -3,6 +3,7 @@ package mancala;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
@@ -14,13 +15,15 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.WindowEvent;
 import utils.I18N;
 
 public class ControllerMancala {
@@ -65,14 +68,36 @@ public class ControllerMancala {
 		
 		HandleSocketService socketHandler = new HandleSocketService(manager);
 		
-		initializeHandlersListeners(socketHandler);
-		
 		Platform.runLater(() -> {
+			initializeHandlersListeners(socketHandler);
 			socketHandler.start();
 		});
 	}
 
 	public void initializeHandlersListeners(HandleSocketService socketHandler) {
+		//Ask for confirmation when closing window
+		info.getScene().getWindow().setOnCloseRequest(new EventHandler<WindowEvent>() {
+
+			@Override
+			public void handle(WindowEvent event) {
+				Alert alert = new Alert(AlertType.CONFIRMATION);
+				alert.setTitle(I18N.get("quit.title"));
+				alert.setHeaderText(I18N.get("quit.header"));
+		        alert.setContentText(I18N.get("quit.content"));
+		        
+		        Optional<ButtonType> option = alert.showAndWait();
+		        if (option.get() == null) {
+		        	 event.consume();
+		         } else if (option.get() == ButtonType.OK) {
+		        	 System.exit(0);
+		         } else if (option.get() == ButtonType.CANCEL) {
+		        	 event.consume();
+		         }
+		         else
+		        	 event.consume();
+			}
+		});
+		
 		//Every time the client receives something, restarts the service to be ready to receive something else
 		socketHandler.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
 			@Override
@@ -193,6 +218,27 @@ public class ControllerMancala {
 	        alert.setContentText(I18N.get("info.next"));
 	        alert.showAndWait();
 	        manager.sendContinue();
+		}
+		if(response.isInfo() && response.getInfoValue().contains("game")) {
+			info.textProperty().bind(I18N.createStringBinding(response.getInfoValue()));
+			Alert alert = new Alert(AlertType.CONFIRMATION);
+			if(response.getInfoValue().contains("win"))
+				alert.setTitle(I18N.get("info.win.greets"));
+			else
+				alert.setTitle(I18N.get("info.lose.greets"));
+			alert.setHeaderText(I18N.get(response.getInfoValue()));
+	        alert.setContentText(I18N.get("info.end"));
+	        
+	        Optional<ButtonType> option = alert.showAndWait();
+	        if (option.get() == null) {
+	            System.exit(0);
+	         } else if (option.get() == ButtonType.OK) {
+	            manager.sendNewGame();
+	         } else if (option.get() == ButtonType.CANCEL) {
+	        	 System.exit(0);
+	         }
+	         else
+	        	 System.exit(0);
 		}
 		if(response.isError()) {
 			error.textProperty().bind(I18N.createStringBinding(response.getErrorValue()));
@@ -429,6 +475,4 @@ public class ControllerMancala {
 	public void setBeginning(boolean isBeginning) {
 		this.isBeginning = isBeginning;
 	}
-	
-	
 }
