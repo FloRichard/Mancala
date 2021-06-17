@@ -488,7 +488,7 @@
                      </padding>
                   </Button>
                   <Region prefHeight="75.0" prefWidth="203.0" />
-                  <Label fx:id="score" alignment="CENTER" contentDisplay="CENTER" minWidth="-Infinity" prefHeight="75.0" prefWidth="357.0" text="Score">
+                  <Label fx:id="score" alignment="CENTER" contentDisplay="CENTER" minWidth="-Infinity" prefHeight="75.0" prefWidth="357.0">
                      <font>
                         <Font size="20.0" />
                      </font>
