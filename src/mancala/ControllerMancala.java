@@ -51,6 +51,8 @@ public class ControllerMancala {
 	private boolean isBeginning;
 	
 	private boolean isYourTurn;
+	
+	private boolean hoverIsEnabled=false, showNumbersIsEnabled=false;
 
 	@FXML
 	public void initialize() {
@@ -93,6 +95,22 @@ public class ControllerMancala {
             }
         });
 		
+		((Label)rightGranary.getChildren().get(1)).addEventHandler(MouseEvent.MOUSE_ENTERED, new EventHandler<MouseEvent>() {
+		     @Override
+		     public void handle(MouseEvent event) {
+		         if(hoverIsEnabled && !showNumbersIsEnabled)
+		        	 ((Label)rightGranary.getChildren().get(1)).setVisible(true);
+		     }
+		});
+		
+		((Label)rightGranary.getChildren().get(1)).addEventHandler(MouseEvent.MOUSE_EXITED, new EventHandler<MouseEvent>() {
+		     @Override
+		     public void handle(MouseEvent event) {
+		         if(hoverIsEnabled && !showNumbersIsEnabled)
+		        	 ((Label)rightGranary.getChildren().get(1)).setVisible(false);
+		     }
+		});
+		
 		((Label)leftGranary.getChildren().get(0)).textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> ov, String t, String t1) {
@@ -102,14 +120,44 @@ public class ControllerMancala {
             }
         });
 		
-		for (StackPane pane : holesPane) {
-			pane.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+		((Label)leftGranary.getChildren().get(0)).addEventHandler(MouseEvent.MOUSE_ENTERED, new EventHandler<MouseEvent>() {
+		     @Override
+		     public void handle(MouseEvent event) {
+		         if(hoverIsEnabled && !showNumbersIsEnabled)
+		        	 ((Label)leftGranary.getChildren().get(0)).setVisible(true);
+		     }
+		});
+		
+		((Label)leftGranary.getChildren().get(0)).addEventHandler(MouseEvent.MOUSE_EXITED, new EventHandler<MouseEvent>() {
+		     @Override
+		     public void handle(MouseEvent event) {
+		         if(hoverIsEnabled && !showNumbersIsEnabled)
+		        	 ((Label)leftGranary.getChildren().get(0)).setVisible(false);
+		     }
+		});
+		
+		for (int i=0;i<holesPane.size();i++) {
+			int index = i;
+			holesPane.get(i).addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
 			     @Override
 			     public void handle(MouseEvent event) {
-			         System.out.println("Hole clicked");
 			         if(isYourTurn) {
-		        		 manager.sendMove(pane.getId());
+		        		 manager.sendMove(holesPane.get(index).getId());
 			         }
+			     }
+			});
+			holesPane.get(i).addEventHandler(MouseEvent.MOUSE_ENTERED, new EventHandler<MouseEvent>() {
+			     @Override
+			     public void handle(MouseEvent event) {
+			         if(hoverIsEnabled && !showNumbersIsEnabled)
+			        	 holesCount.get(index).setVisible(true);
+			     }
+			});
+			holesPane.get(i).addEventHandler(MouseEvent.MOUSE_EXITED, new EventHandler<MouseEvent>() {
+			     @Override
+			     public void handle(MouseEvent event) {
+			         if(hoverIsEnabled && !showNumbersIsEnabled)
+			        	 holesCount.get(index).setVisible(false);
 			     }
 			});
 		}
@@ -254,17 +302,6 @@ public class ControllerMancala {
 		}
 	}
 	
-	public void showNumbers(ActionEvent event) {
-		for (Label label : holesCount) {
-			if(Integer.parseInt(label.getText())<11)
-				label.setVisible(!label.isVisible());
-		}
-		if(Integer.parseInt(((Label)rightGranary.getChildren().get(1)).getText())<24)
-			((Label)rightGranary.getChildren().get(1)).setVisible(!((Label)rightGranary.getChildren().get(1)).isVisible());
-		if(Integer.parseInt(((Label)leftGranary.getChildren().get(0)).getText())<24)
-			((Label)leftGranary.getChildren().get(0)).setVisible(!((Label)leftGranary.getChildren().get(0)).isVisible());
-	}
-	
 	public void updateSeeds() {
 		for (int i=0;i<holesPane.size();i++) {
 			ObservableList<Node> children = holesPane.get(i).getChildren();
@@ -332,6 +369,22 @@ public class ControllerMancala {
 		button2.setVisible(!button2.isVisible());
 	}
 
+	public void showNumbers(ActionEvent event) {
+		for (Label label : holesCount) {
+			if(Integer.parseInt(label.getText())<11)
+				label.setVisible(!label.isVisible());
+		}
+		if(Integer.parseInt(((Label)rightGranary.getChildren().get(1)).getText())<24)
+			((Label)rightGranary.getChildren().get(1)).setVisible(!((Label)rightGranary.getChildren().get(1)).isVisible());
+		if(Integer.parseInt(((Label)leftGranary.getChildren().get(0)).getText())<24)
+			((Label)leftGranary.getChildren().get(0)).setVisible(!((Label)leftGranary.getChildren().get(0)).isVisible());
+		showNumbersIsEnabled=!showNumbersIsEnabled;
+	}
+	
+	public void enableHover() {
+		hoverIsEnabled=!hoverIsEnabled;
+	}
+	
 	public Label getInfo() {
 		return info;
 	}
