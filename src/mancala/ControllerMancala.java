@@ -73,10 +73,18 @@ public class ControllerMancala {
 		
 		HandleSocketService socketHandler = new HandleSocketService(manager);
 		
+		//Every time the client receives something, restarts the service to be ready to receive something else
+		socketHandler.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+			@Override
+			public void handle(WorkerStateEvent event) {
+				handleResponse((ServerOutputController) event.getSource().getValue());
+				socketHandler.restart();
+			}
+		});
+		
 		loadMusicAndSounds();
 		
 		Platform.runLater(() -> {
-			initializeHandlersListeners(socketHandler);
 			socketHandler.start();
 		});
 	}
@@ -109,7 +117,7 @@ public class ControllerMancala {
 		win = new MediaPlayer(new Media(resource.toString()));
 	}
 
-	public void initializeHandlersListeners(HandleSocketService socketHandler) {
+	public void initializeHandlersListeners() {
 		//Ask for confirmation when closing window
 		info.getScene().getWindow().setOnCloseRequest(new EventHandler<WindowEvent>() {
 
@@ -130,15 +138,6 @@ public class ControllerMancala {
 		         }
 		         else
 		        	 event.consume();
-			}
-		});
-		
-		//Every time the client receives something, restarts the service to be ready to receive something else
-		socketHandler.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
-			@Override
-			public void handle(WorkerStateEvent event) {
-				handleResponse((ServerOutputController) event.getSource().getValue());
-				socketHandler.restart();
 			}
 		});
 		
@@ -360,6 +359,7 @@ public class ControllerMancala {
 			List<VBox> holes = new ArrayList<VBox>();
 			Collections.addAll(holes, hole0, hole1, hole2, hole3, hole4, hole5, hole6, hole7, hole8, hole9, hole10, hole11);
 			setupLists(holes);
+			initializeHandlersListeners();
 			this.isBeginning=response.isBeginning();
 			if(isBeginning)
 				isYourTurn=true;
