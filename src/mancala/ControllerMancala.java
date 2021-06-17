@@ -304,6 +304,8 @@ public class ControllerMancala {
 		if(response.isError()) {
 			error.textProperty().bind(I18N.createStringBinding(response.getErrorValue()));
 			error.getStyleClass().add("error");
+			if(response.getErrorValue().contains("disconnection"))
+				info.textProperty().bind(I18N.createStringBinding("info.waiting"));
 		}
 		if(response.isBoard()) {
 			if(this.playerNumber==response.getPlayerNumberTurn())
@@ -353,14 +355,7 @@ public class ControllerMancala {
 		if(response.isInit()) {
 			this.isBeginning=response.isBeginning();
 			this.playerNumber=response.getPlayerNumber();
-			if(isBeginning()) {
-				info.textProperty().bind(I18N.createStringBinding("info.yourTurn"));
-				isYourTurn=true;
-			}
-			else {
-				info.textProperty().bind(I18N.createStringBinding("info.notYourTurn"));
-				isYourTurn=false;
-			}
+			info.textProperty().bind(I18N.createStringBinding("info.ready"));
 			//Change id for player 2 so that the board is reversed
 			if(playerNumber==2) {
 				for(int i=0; i<holesPane.size(); i++) {
