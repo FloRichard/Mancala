@@ -47,6 +47,7 @@ public class SocketManager {
 	}
 	
 	public void sendReset() {
+		System.out.println("seneding reset");
 		this.output.println("{\"type\":\"reset\"}");
 	}
 
