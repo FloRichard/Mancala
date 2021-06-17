@@ -321,6 +321,9 @@ public class ControllerMancala {
 			error.getStyleClass().add("error");
 			if(response.getErrorValue().contains("disconnection"))
 				info.textProperty().bind(I18N.createStringBinding("info.waiting"));
+			else if(response.getErrorValue().contains("notYourArea") || response.getErrorValue().contains("emptyHole")
+					|| response.getErrorValue().contains("notFeedingMove") || response.getErrorValue().contains("isStarving"))
+				toggleClickableHoles();
 		}
 		if(response.isBoard()) {
 			if(this.playerNumber==response.getPlayerNumberTurn()) {
