@@ -69,10 +69,6 @@ public class ControllerMancala {
 	@FXML
 	public void initialize() {
 		
-		List<VBox> holes = new ArrayList<VBox>();
-		Collections.addAll(holes, hole0, hole1, hole2, hole3, hole4, hole5, hole6, hole7, hole8, hole9, hole10, hole11);
-		setupLists(holes);
-		
 		info.textProperty().bind(I18N.createStringBinding("info.waiting"));
 		
 		HandleSocketService socketHandler = new HandleSocketService(manager);
@@ -262,12 +258,20 @@ public class ControllerMancala {
 					win.play();
 				}
 			}
-			else {
+			else if (response.getInfoValue().contains("lose")){
 				alert.setTitle(I18N.get("info.lose.greets"));
 				if(isSoundEnabled) {
 					lose.setStartTime(Duration.ZERO);
 	        		lose.seek(Duration.ZERO);
 					lose.play();
+				}
+			}
+			else {
+				alert.setTitle(I18N.get("info.draw.greets"));
+				if(isSoundEnabled) {
+					win.setStartTime(Duration.ZERO);
+	        		win.seek(Duration.ZERO);
+					win.play();
 				}
 			}
 	        alert.setHeaderText(I18N.get(response.getInfoValue()));
@@ -353,6 +357,9 @@ public class ControllerMancala {
 			}
 		}
 		if(response.isInit()) {
+			List<VBox> holes = new ArrayList<VBox>();
+			Collections.addAll(holes, hole0, hole1, hole2, hole3, hole4, hole5, hole6, hole7, hole8, hole9, hole10, hole11);
+			setupLists(holes);
 			this.isBeginning=response.isBeginning();
 			if(isBeginning)
 				isYourTurn=true;
