@@ -354,6 +354,10 @@ public class ControllerMancala {
 		}
 		if(response.isInit()) {
 			this.isBeginning=response.isBeginning();
+			if(isBeginning)
+				isYourTurn=true;
+			else
+				isYourTurn=false;
 			this.playerNumber=response.getPlayerNumber();
 			info.textProperty().bind(I18N.createStringBinding("info.ready"));
 			//Change id for player 2 so that the board is reversed
