@@ -13,8 +13,10 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
@@ -119,8 +121,17 @@ public class ControllerMancala {
 
 	public void handleResponse(ServerOutputController response) {
 		System.out.println(response.getRawJSONOutput());
-		if(response.isInfo()) {
+		if(response.isInfo() && response.getInfoValue().contains("round")) {
 			info.textProperty().bind(I18N.createStringBinding(response.getInfoValue()));
+			Alert alert = new Alert(AlertType.INFORMATION);
+			if(response.getInfoValue().contains("win"))
+				alert.setTitle(I18N.get("info.win.greets"));
+			else
+				alert.setTitle(I18N.get("info.lose.greets"));
+	        alert.setHeaderText(I18N.get(response.getInfoValue()));
+	        alert.setContentText(I18N.get("info.next"));
+	        alert.showAndWait();
+	        manager.sendContinue();
 		}
 		if(response.isError()) {
 			error.textProperty().bind(I18N.createStringBinding(response.getErrorValue()));

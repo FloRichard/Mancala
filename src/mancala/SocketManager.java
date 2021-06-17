@@ -32,6 +32,11 @@ public class SocketManager {
 	public void sendConfirm(String target) {
 		this.output.println("{\"type\":\"confirmation\",\"action\":\""+target+"\"}");
 	}
+	
+
+	public void sendContinue() {
+		this.output.println("continue");
+	}
 
 	public Socket getSocket() {
 		return socket;
