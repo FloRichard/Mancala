@@ -65,8 +65,16 @@ public class ControllerMancala {
 		
 		HandleSocketService socketHandler = new HandleSocketService(manager);
 		
+		initializeHandlersListeners(socketHandler);
+		
+		Platform.runLater(() -> {
+			socketHandler.start();
+		});
+	}
+
+	public void initializeHandlersListeners(HandleSocketService socketHandler) {
+		//Every time the client receives something, restarts the service to be ready to receive something else
 		socketHandler.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
-			
 			@Override
 			public void handle(WorkerStateEvent event) {
 				handleResponse((ServerOutputController) event.getSource().getValue());
@@ -74,27 +82,31 @@ public class ControllerMancala {
 			}
 		});
 		
-		//Display number of seeds if a hole contains more than 10 seeds
+		//Display number of seeds if a hole contains more than 10 seeds, because graphically only 10 seeds can be displayed
 		for (Label label: holesCount) {
 			label.textProperty().addListener(new ChangeListener<String>() {
 	            @Override
 	            public void changed(ObservableValue<? extends String> ov, String t, String t1) {
-	            	if(Integer.parseInt(t1)>10) {
+	            	if(Integer.parseInt(t1)>10) 
 	            		label.setVisible(true);
-	            	}         		
+	            	if(Integer.parseInt(t1)<11 && !showNumbersIsEnabled)
+	            		label.setVisible(false);
 	            }
 	        });
 		}
 		
+		//Display number of seeds if a granary contains more than 23 seeds, because graphically only 23 seeds can be displayed
 		((Label)rightGranary.getChildren().get(1)).textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> ov, String t, String t1) {
-            	if(Integer.parseInt(t1)>23) {
+            	if(Integer.parseInt(t1)>23)
             		((Label)rightGranary.getChildren().get(1)).setVisible(true);
-            	}         		
+            	if(Integer.parseInt(t1)<24 && !showNumbersIsEnabled)
+            		((Label)rightGranary.getChildren().get(1)).setVisible(false);
             }
         });
 		
+		// Two handlers to display number of seeds while entering a hole
 		((Label)rightGranary.getChildren().get(1)).addEventHandler(MouseEvent.MOUSE_ENTERED, new EventHandler<MouseEvent>() {
 		     @Override
 		     public void handle(MouseEvent event) {
@@ -111,15 +123,18 @@ public class ControllerMancala {
 		     }
 		});
 		
+		//Display number of seeds if a granary contains more than 23 seeds, because graphically only 23 seeds can be displayed
 		((Label)leftGranary.getChildren().get(0)).textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> ov, String t, String t1) {
-            	if(Integer.parseInt(t1)>23) {
+            	if(Integer.parseInt(t1)>23)
             		((Label)leftGranary.getChildren().get(0)).setVisible(true);
-            	}         		
+            	if(Integer.parseInt(t1)<24 && !showNumbersIsEnabled)
+            		((Label)leftGranary.getChildren().get(0)).setVisible(false);
             }
         });
 		
+		// Two handlers to display number of seeds while entering a hole
 		((Label)leftGranary.getChildren().get(0)).addEventHandler(MouseEvent.MOUSE_ENTERED, new EventHandler<MouseEvent>() {
 		     @Override
 		     public void handle(MouseEvent event) {
@@ -137,7 +152,8 @@ public class ControllerMancala {
 		});
 		
 		for (int i=0;i<holesPane.size();i++) {
-			int index = i;
+			int index = i;//So the handlers can scope i
+			// Handler to send a move while clicking on a hole
 			holesPane.get(i).addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
 			     @Override
 			     public void handle(MouseEvent event) {
@@ -146,6 +162,7 @@ public class ControllerMancala {
 			         }
 			     }
 			});
+			// Two handlers to display number of seeds while entering a hole
 			holesPane.get(i).addEventHandler(MouseEvent.MOUSE_ENTERED, new EventHandler<MouseEvent>() {
 			     @Override
 			     public void handle(MouseEvent event) {
@@ -161,10 +178,6 @@ public class ControllerMancala {
 			     }
 			});
 		}
-		
-		Platform.runLater(() -> {
-			socketHandler.start();
-		});
 	}
 
 	public void handleResponse(ServerOutputController response) {
