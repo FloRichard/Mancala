@@ -45,6 +45,10 @@ public class SocketManager {
 	public void sendSurrend() {
 		this.output.println("{\"type\":\"surrend\"}");
 	}
+	
+	public void sendReset() {
+		this.output.println("{\"type\":\"reset\"}");
+	}
 
 	public Socket getSocket() {
 		return socket;

@@ -297,7 +297,9 @@ public class ControllerMancala {
 	        if (option.get() == null) {
 	            System.exit(0);
 	         } else if (option.get() == ButtonType.OK) {
-	            manager.sendNewGame();
+	        	manager.sendReset();
+	            resetGame();
+	            info.textProperty().bind(I18N.createStringBinding("info.waiting"));
 	         } else if (option.get() == ButtonType.CANCEL) {
 	        	 System.exit(0);
 	         }
@@ -356,10 +358,7 @@ public class ControllerMancala {
 			}
 		}
 		if(response.isInit()) {
-			List<VBox> holes = new ArrayList<VBox>();
-			Collections.addAll(holes, hole0, hole1, hole2, hole3, hole4, hole5, hole6, hole7, hole8, hole9, hole10, hole11);
-			setupLists(holes);
-			initializeHandlersListeners();
+			resetGame();
 			this.isBeginning=response.isBeginning();
 			if(isBeginning)
 				isYourTurn=true;
@@ -547,6 +546,13 @@ public class ControllerMancala {
 	
 	public void newMatch() {
 		manager.sendNewGame();
+	}
+	
+	public void resetGame() {
+		List<VBox> holes = new ArrayList<VBox>();
+		Collections.addAll(holes, hole0, hole1, hole2, hole3, hole4, hole5, hole6, hole7, hole8, hole9, hole10, hole11);
+		setupLists(holes);
+		initializeHandlersListeners();
 	}
 	
 	public Label getInfo() {
