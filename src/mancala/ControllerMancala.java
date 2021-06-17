@@ -20,6 +20,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
@@ -48,6 +49,9 @@ public class ControllerMancala {
 	@FXML 
 	private Button button1, button2;
 	
+	@FXML
+	private MenuItem surrendRoundMenu, cancelMenu, surrendMenu, newMatchMenu, saveMatchMenu;
+	
 	private List<Label> holesCount = new ArrayList<Label>();
 	
 	private List<StackPane> holesPane = new ArrayList<StackPane>();
@@ -70,6 +74,11 @@ public class ControllerMancala {
 	public void initialize() {
 		
 		info.textProperty().bind(I18N.createStringBinding("info.waiting"));
+		cancelMenu.setDisable(true);
+		surrendMenu.setDisable(true);
+		newMatchMenu.setDisable(true);
+		surrendRoundMenu.setDisable(true);
+		saveMatchMenu.setDisable(true);
 		
 		HandleSocketService socketHandler = new HandleSocketService(manager);
 		
@@ -222,6 +231,7 @@ public class ControllerMancala {
 			        		 seed.seek(Duration.ZERO);
 			        		 seed.play(); 
 			        	 }
+			        	 toggleClickableHoles();
 		        		 manager.sendMove(holesPane.get(index).getId());
 			         }
 			     }
@@ -313,10 +323,14 @@ public class ControllerMancala {
 				info.textProperty().bind(I18N.createStringBinding("info.waiting"));
 		}
 		if(response.isBoard()) {
-			if(this.playerNumber==response.getPlayerNumberTurn())
+			if(this.playerNumber==response.getPlayerNumberTurn()) {
+				surrendRoundMenu.setDisable(false);
 				isYourTurn=true;
-			else
+			}
+			else {
+				surrendRoundMenu.setDisable(true);
 				isYourTurn=false;
+			}
 			if(isYourTurn)
 				info.textProperty().bind(I18N.createStringBinding("info.yourTurn"));
 			else
@@ -359,6 +373,7 @@ public class ControllerMancala {
 		}
 		if(response.isInit()) {
 			resetGame();
+			newMatchMenu.setDisable(false);
 			this.isBeginning=response.isBeginning();
 			if(isBeginning)
 				isYourTurn=true;
@@ -466,6 +481,7 @@ public class ControllerMancala {
 	}
 	
 	public void showConfirmButtons() {
+		cancelMenu.setDisable(false);
 		button1.textProperty().bind(I18N.createStringBinding("button.confirm.yes"));
 		button2.textProperty().bind(I18N.createStringBinding("button.confirm.cancel"));
 		
@@ -479,6 +495,8 @@ public class ControllerMancala {
 		        	confirm.play();
 		        }
 		        toggleButtonsVisibility();
+		        toggleClickableHoles();
+		        cancelMenu.setDisable(true);
 		    }
 		});
 		button2.setOnAction(new EventHandler<ActionEvent>() {
@@ -491,6 +509,8 @@ public class ControllerMancala {
 		        	cancel.play();
 		        }
 		        toggleButtonsVisibility();
+		        toggleClickableHoles();
+		        cancelMenu.setDisable(true);
 		    }
 		});
 		toggleButtonsVisibility();
@@ -535,6 +555,7 @@ public class ControllerMancala {
         alert.setHeaderText(I18N.get("rules.header"));
         WebView webView = new WebView();
         webView.getEngine().loadContent(I18N.get("rules.content"));
+        webView.getEngine().setUserStyleSheetLocation(getClass().getClassLoader().getResource("style.css").toString());
         webView.setPrefSize(500, 600);
         alert.getDialogPane().setContent(webView);;
         alert.showAndWait();
@@ -546,6 +567,8 @@ public class ControllerMancala {
 	
 	public void newMatch() {
 		manager.sendNewGame();
+		surrendMenu.setDisable(false);
+		saveMatchMenu.setDisable(false);
 	}
 	
 	public void resetGame() {
@@ -553,6 +576,20 @@ public class ControllerMancala {
 		Collections.addAll(holes, hole0, hole1, hole2, hole3, hole4, hole5, hole6, hole7, hole8, hole9, hole10, hole11);
 		setupLists(holes);
 		initializeHandlersListeners();
+	}
+	
+	public void toggleClickableHoles() {
+		for (int i=0;i<holesPane.size();i++) {
+			holesPane.get(i).setDisable(!holesPane.get(i).isDisable());
+		}
+	}
+	
+	public void about() {
+		Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle(I18N.get("about.title"));
+        alert.setHeaderText(I18N.get("about.header"));
+        alert.setContentText(I18N.get("about.content"));
+        alert.showAndWait();
 	}
 	
 	public Label getInfo() {

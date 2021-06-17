@@ -16,11 +16,11 @@
           <Menu mnemonicParsing="false" text="Awalé">
             <items>
               <MenuItem mnemonicParsing="false" text="Charger partie" />
-                  <MenuItem mnemonicParsing="false" text="Sauvegarder partie" />
-                  <MenuItem mnemonicParsing="false" text="Abandonner partie" onAction="#surrendRound"/>
-                  <MenuItem mnemonicParsing="false" text="Nouveau match" onAction="#newMatch"/>
-                  <MenuItem mnemonicParsing="false" text="Arrêter match" />
-                  <MenuItem mnemonicParsing="false" text="Annuler dernier coup" />
+                  <MenuItem fx:id="saveMatchMenu" mnemonicParsing="false" text="Sauvegarder partie" />
+                  <MenuItem fx:id="surrendRoundMenu" mnemonicParsing="false" text="Abandonner partie" onAction="#surrendRound"/>
+                  <MenuItem fx:id="newMatchMenu" mnemonicParsing="false" text="Nouveau match" onAction="#newMatch"/>
+                  <MenuItem fx:id="surrendMenu" mnemonicParsing="false" text="Abandonner match" />
+                  <MenuItem fx:id="cancelMenu" mnemonicParsing="false" text="Annuler dernier coup" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Règles">
@@ -36,7 +36,11 @@
                   <CheckMenuItem mnemonicParsing="false" onAction="#toggleMusic" text="Musiques" />
             </items>
           </Menu>
-            <Menu mnemonicParsing="false" text="À propos" />
+          <Menu mnemonicParsing="false" text="About">
+                <items>
+                  <MenuItem onAction="#about" mnemonicParsing="false" text="About Mancala" />
+                </items>
+          </Menu>
         </menus>
       </MenuBar>
       <VBox layoutY="25.0" prefHeight="645.0" prefWidth="1300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">

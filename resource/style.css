@@ -20,3 +20,15 @@
 .error{
 	-fx-text-inner-color: red;
 }
+
+html{
+	margin:10pt;
+	font-size: 10pt;
+  	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+  	color: black;
+  	line-height: 14pt;
+  	padding-left: 5pt;
+  	padding-right: 5pt;
+  	padding-top: 5pt;
+  	text-align: justify;
+}
