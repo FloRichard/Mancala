@@ -151,15 +151,14 @@ public class ControllerMancala {
 					holesCount.get(i).setText(String.valueOf(seeds[i-6]));
 				}
 			}
-			if(response.getPlayerNumber()==1) {
-				((Label) rightGranary.getChildren().get(1)).setText(String.valueOf(response.getPlayerTwoGranaryCount()));
-				((Label) leftGranary.getChildren().get(0)).setText(String.valueOf(response.getPlayerOneGranaryCount()));
+			if(this.playerNumber==1) {
+				((Label) rightGranary.getChildren().get(1)).setText(String.valueOf(response.getPlayerOneGranaryCount()));
+				((Label) leftGranary.getChildren().get(0)).setText(String.valueOf(response.getPlayerTwoGranaryCount()));
 			}
 			else {
 				((Label) rightGranary.getChildren().get(1)).setText(String.valueOf(response.getPlayerTwoGranaryCount()));
 				((Label) leftGranary.getChildren().get(0)).setText(String.valueOf(response.getPlayerOneGranaryCount()));
 			}
-			response.setPlayerTwoScore(2);
 			if(this.playerNumber==1) 
 				score.textProperty().bind(I18N.createStringBinding("score",response.getPlayerOneScore(),response.getPlayerTwoScore()));
 			else
@@ -274,11 +273,21 @@ public class ControllerMancala {
 				children.get(j).setVisible(true);
 			}
 		}
+		for(int j=23;j>Integer.parseInt(((Label) rightGranary.getChildren().get(1)).getText());j--) {
+			if(children.get(j) instanceof ImageView) {
+				children.get(j).setVisible(false);
+			}
+		}
 		child = (StackPane) leftGranary.getChildren().get(1);
 		children = child.getChildren();
 		for(int j=0; j<=Integer.parseInt(((Label) leftGranary.getChildren().get(0)).getText()); j++) {
 			if(children.get(j) instanceof ImageView && j<=23) {
 				children.get(j).setVisible(true);
+			}
+		}
+		for(int j=23;j>Integer.parseInt(((Label) leftGranary.getChildren().get(1)).getText());j--) {
+			if(children.get(j) instanceof ImageView) {
+				children.get(j).setVisible(false);
 			}
 		}
 	}
