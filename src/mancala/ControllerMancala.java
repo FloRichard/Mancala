@@ -245,10 +245,13 @@ public class ControllerMancala {
 	
 	public void showNumbers(ActionEvent event) {
 		for (Label label : holesCount) {
-			label.setVisible(!label.isVisible());
+			if(Integer.parseInt(label.getText())<11)
+				label.setVisible(!label.isVisible());
 		}
-		((Label)rightGranary.getChildren().get(1)).setVisible(true);
-		((Label)leftGranary.getChildren().get(0)).setVisible(true);
+		if(Integer.parseInt(((Label)rightGranary.getChildren().get(1)).getText())<24)
+			((Label)rightGranary.getChildren().get(1)).setVisible(!((Label)rightGranary.getChildren().get(1)).isVisible());
+		if(Integer.parseInt(((Label)leftGranary.getChildren().get(0)).getText())<24)
+			((Label)leftGranary.getChildren().get(0)).setVisible(!((Label)leftGranary.getChildren().get(0)).isVisible());
 	}
 	
 	public void updateSeeds() {
@@ -268,7 +271,7 @@ public class ControllerMancala {
 		}
 		StackPane child = (StackPane) rightGranary.getChildren().get(0);
 		ObservableList<Node> children = child.getChildren();
-		for(int j=0; j<=Integer.parseInt(((Label) rightGranary.getChildren().get(1)).getText()); j++) {
+		for(int j=0; j<=Integer.parseInt(((Label) rightGranary.getChildren().get(1)).getText()) && j<=23; j++) {
 			if(children.get(j) instanceof ImageView && j<23) {
 				children.get(j).setVisible(true);
 			}
@@ -280,8 +283,8 @@ public class ControllerMancala {
 		}
 		child = (StackPane) leftGranary.getChildren().get(1);
 		children = child.getChildren();
-		for(int j=0; j<=Integer.parseInt(((Label) leftGranary.getChildren().get(0)).getText()); j++) {
-			if(children.get(j) instanceof ImageView && j<23) {
+		for(int j=0; j<=Integer.parseInt(((Label) leftGranary.getChildren().get(0)).getText()) && j<=23; j++) {
+			if(children.get(j) instanceof ImageView ) {
 				children.get(j).setVisible(true);
 			}
 		}
