@@ -121,7 +121,6 @@ public class ControllerMancala {
 			bindMenuLanguage();
 			resetGame();
 			initializeHandlersListeners();
-			manager.sendUsername(username);
 			socketHandler.start();
 		});
 	}
@@ -451,6 +450,7 @@ public class ControllerMancala {
 					}
 				}
 			}
+			manager.sendUsername(username);
 		}
 	}
 
