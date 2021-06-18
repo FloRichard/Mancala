@@ -21,26 +21,31 @@
             </AnchorPane>
             <AnchorPane prefHeight="230.0" prefWidth="498.0">
                <children>
-                  <Label fx:id="addressLabel" layoutX="97.0" layoutY="70.0" text="Adresse :" AnchorPane.leftAnchor="97.0" />
-                  <RadioButton fx:id="en" layoutX="294.0" layoutY="26.0" mnemonicParsing="false" text="Anglais">
-                     <toggleGroup>
-                        <ToggleGroup fx:id="languageChoice"/>
-                     </toggleGroup>
-                  </RadioButton>
-                  <Label fx:id="portLabel" layoutX="179.0" layoutY="115.0" text="Port :" AnchorPane.leftAnchor="179.0" />
-                  <Button fx:id="connection" layoutX="177.0" layoutY="162.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="145.0" text="Se connecter" onAction="#submitConnection"/>
-                  <TextField fx:id="port" layoutX="215.0" layoutY="110.0" prefHeight="25.0" prefWidth="68.0" text="59001">
-                     <padding>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </padding>
-                  </TextField>
-                  <RadioButton fx:id="fr" layoutX="212.0" layoutY="26.0" mnemonicParsing="false" selected="true" text="Français" toggleGroup="$languageChoice" />
-                  <TextField fx:id="address" layoutX="154.0" layoutY="65.0" prefHeight="25.0" prefWidth="190.0" text="127.0.0.1">
-                     <padding>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </padding>
-                  </TextField>
                   <Label fx:id="languageLabel" layoutX="102.0" layoutY="26.0" text="Choisir la langue :" />
+                  <RadioButton fx:id="fr" layoutX="212.0" layoutY="26.0" mnemonicParsing="false" selected="true" text="Français">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="languageChoice" />
+                     </toggleGroup></RadioButton>
+                  <RadioButton fx:id="en" layoutX="294.0" layoutY="26.0" mnemonicParsing="false" text="Anglais" toggleGroup="$languageChoice" />
+                  <Label fx:id="usernameLabel" layoutX="111.0" layoutY="74.0" text="Pseudo :" AnchorPane.leftAnchor="111.0" />
+                  <TextField fx:id="username" layoutX="176.0" layoutY="69.0" prefHeight="27.0" prefWidth="167.0">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </TextField>
+                  <Label fx:id="addressLabel" layoutX="107.0" layoutY="119.0" text="Adresse :" />
+                  <TextField fx:id="address" layoutX="164.0" layoutY="114.0" prefHeight="25.0" prefWidth="190.0" promptText="127.0.0.1">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </TextField>
+                  <Label fx:id="portLabel" layoutX="179.0" layoutY="154.0" text="Port :" AnchorPane.leftAnchor="179.0" />
+                  <TextField fx:id="port" layoutX="215.0" layoutY="149.0" prefHeight="25.0" prefWidth="68.0" promptText="59001">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </TextField>
+                  <Button fx:id="connection" layoutX="177.0" layoutY="201.0" mnemonicParsing="false" onAction="#submitConnection" prefHeight="35.0" prefWidth="145.0" text="Se connecter" />
                </children>
             </AnchorPane>
         </items>

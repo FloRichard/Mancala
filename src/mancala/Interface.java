@@ -25,9 +25,11 @@ import utils.I18N;
 public class Interface {
 	
 	private Socket socket;
+	private String username;
 	
-	public Interface(Socket socket, Locale lang) {
+	public Interface(Socket socket, Locale lang, String username) {
 		this.socket = socket;
+		this.username = username;
 		I18N.setLocale(lang);
 	}
 	
@@ -35,6 +37,7 @@ public class Interface {
 		try {
 			ControllerMancala controller = new ControllerMancala();
 			controller.setManager(new SocketManager(this.socket));
+			controller.setUsername(username);
 			
 			FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("mancala.fxml"));
 			loader.setController(controller);
@@ -53,7 +56,7 @@ public class Interface {
 			rectangle.setArcWidth(30.0);   // Corner radius
 			rectangle.setArcHeight(30.0);
 			rectangle.setStyle("-fx-border-radius: 30;-fx-border-color: black;");
-						
+			
 			imView.setClip(rectangle);
 			
 			SnapshotParameters parameters = new SnapshotParameters();

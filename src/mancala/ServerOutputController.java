@@ -21,6 +21,7 @@ public class ServerOutputController {
 	private static final String BOARD = "board";
 	private static final String ERROR = "error";
 	private static final String INFO = "info";
+	private static final String SCORE = "score";
 
 	private String rawJSONOutput;
 	
@@ -43,6 +44,7 @@ public class ServerOutputController {
 	private int playerOneScore;
 	private int playerTwoScore;
 	private String difficulty;
+	private String score;
 	
 	public ServerOutputController(String rawJSONOutput) {
 		this.rawJSONOutput = rawJSONOutput;
@@ -67,6 +69,7 @@ public class ServerOutputController {
 		case INFO:
 			this.isInfo=true;
 			this.infoValue=jsonObject.get(VALUE).getAsString();
+			this.score=jsonObject.get(SCORE).getAsString();
 			break;
 			
 		case ERROR:
@@ -249,6 +252,14 @@ public class ServerOutputController {
 
 	public void setDifficulty(String difficulty) {
 		this.difficulty = difficulty;
+	}
+
+	public String getScore() {
+		return score;
+	}
+
+	public void setScore(String score) {
+		this.score = score;
 	}
 	
 }

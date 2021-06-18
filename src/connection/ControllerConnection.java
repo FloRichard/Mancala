@@ -28,6 +28,9 @@ public class ControllerConnection {
 	private final Text warningText = new Text();
 	private final Text warningHost = new Text();
 	
+	@FXML 
+	private TextField username;
+	
 	@FXML
 	private TextField address;
 	
@@ -45,6 +48,9 @@ public class ControllerConnection {
 	
 	@FXML
 	private Label languageLabel;
+	
+	@FXML 
+	private Label usernameLabel;
 	
 	@FXML
 	private Label title;
@@ -91,6 +97,7 @@ public class ControllerConnection {
 	        }
 	    });
 		//Bind text values to bind them to the chosen language
+		usernameLabel.textProperty().bind(I18N.createStringBinding("label.usernameLabel"));
 		addressLabel.textProperty().bind(I18N.createStringBinding("label.addressLabel"));
 		portLabel.textProperty().bind(I18N.createStringBinding("label.portLabel"));
 		languageLabel.textProperty().bind(I18N.createStringBinding("label.languageLabel"));
@@ -110,11 +117,17 @@ public class ControllerConnection {
 	        alert.setContentText(warningText.getText());
 	        alert.showAndWait();
 		}
+		else if(username.getText().equals("")) {
+			Alert alert = new Alert(AlertType.WARNING);
+	        alert.setTitle(warning.getText());
+	        alert.setContentText(I18N.get("alert.username.content"));
+	        alert.showAndWait();
+		}
 		else {
 	        try {
 	        	// If the socket connects successfully, the game window is started
 	        	Socket socket = new Socket(address.getText(),Integer.parseInt(port.getText()));
-	        	Interface game = new Interface(socket,I18N.getLocale());
+	        	Interface game = new Interface(socket,I18N.getLocale(),username.getText());
 	        	game.start();
 	            ((Node)(event.getSource())).getScene().getWindow().hide();
 			} catch (NumberFormatException e) {

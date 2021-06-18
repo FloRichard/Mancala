@@ -9,35 +9,37 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="1300.0" style="-fx-background-color: #E5E5E5;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <MenuBar prefHeight="25.0" prefWidth="1300.0">
         <menus>
-          <Menu mnemonicParsing="false" text="Awalé">
+          <Menu fx:id="awaleMenu" mnemonicParsing="false" text="Awalé">
             <items>
-              	  <MenuItem fx:id="loadMatchMenu" mnemonicParsing="false" text="Charger partie" onAction="#loadGame"/>
-                  <MenuItem fx:id="saveMatchMenu" mnemonicParsing="false" text="Sauvegarder partie" onAction="#saveGame"/>
-                  <MenuItem fx:id="surrendRoundMenu" mnemonicParsing="false" text="Abandonner manche" onAction="#surrendRound"/>
-                  <MenuItem fx:id="newMatchMenu" mnemonicParsing="false" text="Nouveau match" onAction="#newMatch"/>
-                  <MenuItem fx:id="surrendMenu" mnemonicParsing="false" text="Abandonner match" />
+              	  <MenuItem fx:id="loadMatchMenu" mnemonicParsing="false" onAction="#loadGame" text="" />
+                  <MenuItem fx:id="saveMatchMenu" mnemonicParsing="false" onAction="#saveGame" text="" />
+                  <MenuItem fx:id="newMatchMenu" mnemonicParsing="false" onAction="#newMatch" text="" />
+                  <MenuItem fx:id="surrendRoundMenu" mnemonicParsing="false" onAction="#surrendRound" text="" />
+                  <MenuItem fx:id="surrendMenu" mnemonicParsing="false" onAction="#surrendMatch" text="" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Règles">
+          <Menu fx:id="rulesMenu" mnemonicParsing="false" text="">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Voir la règle" onAction="#displayRules"/>
+                  <MenuItem fx:id="seeRulesMenu" mnemonicParsing="false" onAction="#displayRules" text="" />
                </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Options">
+          <Menu fx:id="settingsMenu" mnemonicParsing="false" text="Options">
             <items>
-                  <CheckMenuItem mnemonicParsing="false" onAction="#enableHover" text="Voir nombre de graines" />
-                  <CheckMenuItem mnemonicParsing="false" onAction="#showNumbers" text="Voir état plateau" />
-                  <CheckMenuItem mnemonicParsing="false" onAction="#toggleSound" text="Bruitages" />
-                  <CheckMenuItem mnemonicParsing="false" onAction="#toggleMusic" text="Musiques" />
+                  <CheckMenuItem fx:id="hoverCheck" mnemonicParsing="false" onAction="#enableHover" text="" />
+                  <CheckMenuItem fx:id="showCheck" mnemonicParsing="false" onAction="#showNumbers" text="" />
+                  <CheckMenuItem fx:id="toggleSoundCheck" mnemonicParsing="false" onAction="#toggleSound" text="" />
+                  <CheckMenuItem fx:id="toggleMusicCheck" mnemonicParsing="false" onAction="#toggleMusic" text="" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem fx:id="changeLanguage" mnemonicParsing="false" onAction="#toggleLanguage" text="" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="About">
+          <Menu fx:id="aboutMenu" mnemonicParsing="false" text="">
                 <items>
-                  <MenuItem onAction="#about" mnemonicParsing="false" text="About Mancala" />
+                  <MenuItem fx:id="aboutMancalaMenu" mnemonicParsing="false" onAction="#about" text="" />
                 </items>
           </Menu>
         </menus>
@@ -60,7 +62,7 @@
                <children>
                   <VBox fx:id="leftGranary" prefHeight="200.0" prefWidth="170.0">
                      <children>
-                        <Label alignment="CENTER" prefHeight="74.0" prefWidth="170.0" text="0" textFill="#000fff" visible="false">
+                        <Label alignment="CENTER" prefHeight="74.0" prefWidth="170.0" text="0" textFill="#000000" visible="false">
                            <font>
                               <Font name="System Bold" size="32.0" />
                            </font>
@@ -455,7 +457,7 @@
                               <Insets top="20.0" />
                            </VBox.margin>
                         </StackPane>
-                        <Label alignment="CENTER" prefHeight="74.0" prefWidth="170.0" text="0" textFill="#ff6900" visible="false">
+                        <Label alignment="CENTER" prefHeight="74.0" prefWidth="170.0" text="0" textFill="#000000" visible="false">
                            <font>
                               <Font name="System Bold" size="32.0" />
                            </font>

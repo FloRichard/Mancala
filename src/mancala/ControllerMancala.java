@@ -11,6 +11,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 import java.util.Scanner;
 
@@ -28,7 +29,9 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.CheckMenuItem;
 import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -61,7 +64,13 @@ public class ControllerMancala {
 	private Button button1, button2;
 	
 	@FXML
-	private MenuItem surrendRoundMenu, surrendMenu, newMatchMenu, saveMatchMenu, loadMatchMenu;
+	private MenuItem surrendRoundMenu, surrendMenu, newMatchMenu, saveMatchMenu, loadMatchMenu, aboutMancalaMenu, seeRulesMenu, changeLanguage;
+	
+	@FXML
+	private CheckMenuItem hoverCheck, showCheck, toggleSoundCheck, toggleMusicCheck;
+	
+	@FXML
+	private Menu awaleMenu, rulesMenu, settingsMenu, aboutMenu;
 	
 	private List<Label> holesCount;
 	
@@ -83,6 +92,8 @@ public class ControllerMancala {
 	
 	private String actualBoard;
 	
+	private String username;
+	
 	@FXML
 	public void initialize() {
 		
@@ -91,6 +102,7 @@ public class ControllerMancala {
 		newMatchMenu.setDisable(true);
 		surrendRoundMenu.setDisable(true);
 		saveMatchMenu.setDisable(true);
+		loadMatchMenu.setDisable(true);
 		
 		HandleSocketService socketHandler = new HandleSocketService(manager);
 		
@@ -106,8 +118,10 @@ public class ControllerMancala {
 		loadMusicAndSounds();
 		
 		Platform.runLater(() -> {
+			bindMenuLanguage();
 			resetGame();
 			initializeHandlersListeners();
+			manager.sendUsername(username);
 			socketHandler.start();
 		});
 	}
@@ -309,6 +323,9 @@ public class ControllerMancala {
 				applause.play();
 			}
 			info.textProperty().bind(I18N.createStringBinding(response.getInfoValue()));
+			//Display the scoreboard of the best 100 players
+			
+			//Display the confirmation dialog to continue or quit
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			if(response.getInfoValue().contains("win"))
 				alert.setTitle(I18N.get("info.win.greets"));
@@ -317,15 +334,34 @@ public class ControllerMancala {
 			alert.setHeaderText(I18N.get(response.getInfoValue()));
 	        alert.setContentText(I18N.get("info.end"));
 	        
+	        ButtonType buttonTypeOne = new ButtonType(I18N.get("info.ok"));
+			ButtonType buttonTypeTwo = new ButtonType(I18N.get("info.scores"));
+			ButtonType buttonTypeCancel = new ButtonType(I18N.get("info.quit"), ButtonData.CANCEL_CLOSE);
+
+			alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo, buttonTypeCancel);
+	        
 	        Optional<ButtonType> option = alert.showAndWait();
 	        if (option.get() == null) {
-	            System.exit(0);
-	         } else if (option.get() == ButtonType.OK) {
 	        	score.textProperty().bind(I18N.createStringBinding("empty"));
 	        	manager.sendReset();
 	            resetGame();
-	            info.textProperty().bind(I18N.createStringBinding("info.waiting"));
-	         } else if (option.get() == ButtonType.CANCEL) {
+	            info.textProperty().bind(I18N.createStringBinding("info.please"));
+	         } else if (option.get() == buttonTypeOne) {
+	        	score.textProperty().bind(I18N.createStringBinding("empty"));
+	        	manager.sendReset();
+	            resetGame();
+	            info.textProperty().bind(I18N.createStringBinding("info.please"));
+	         } else if(option.get() == buttonTypeTwo) {
+	        	 Alert score = new Alert(AlertType.INFORMATION);
+	     		 score.setTitle(I18N.get("score.title"));
+	             score.setHeaderText(I18N.get("score.header"));
+	             WebView webView = new WebView();
+	             webView.getEngine().loadContent(response.getScore());
+	             webView.getEngine().setUserStyleSheetLocation(getClass().getClassLoader().getResource("style.css").toString());
+	             webView.setPrefSize(500, 600);
+	             score.getDialogPane().setContent(webView);
+	             score.showAndWait();
+			 } else if (option.get() == buttonTypeCancel) {
 	        	 System.exit(0);
 	         }
 	         else
@@ -335,7 +371,7 @@ public class ControllerMancala {
 			error.textProperty().bind(I18N.createStringBinding(response.getErrorValue()));
 			error.getStyleClass().add("error");
 			if(response.getErrorValue().contains("disconnection"))
-				info.textProperty().bind(I18N.createStringBinding("info.waiting"));
+				info.textProperty().bind(I18N.createStringBinding("info.please"));
 			else if(response.getErrorValue().contains("notYourArea") || response.getErrorValue().contains("emptyHole")
 					|| response.getErrorValue().contains("notFeedingMove") || response.getErrorValue().contains("isStarving"))
 				toggleClickableHoles();
@@ -581,7 +617,7 @@ public class ControllerMancala {
         webView.getEngine().loadContent(I18N.get("rules.content"));
         webView.getEngine().setUserStyleSheetLocation(getClass().getClassLoader().getResource("style.css").toString());
         webView.setPrefSize(500, 600);
-        alert.getDialogPane().setContent(webView);;
+        alert.getDialogPane().setContent(webView);
         alert.showAndWait();
 	}
 	
@@ -671,6 +707,68 @@ public class ControllerMancala {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
+		if(file!=null) {
+			loadMatchMenu.setDisable(true);
+			surrendMenu.setDisable(false);
+			surrendRoundMenu.setDisable(false);
+			saveMatchMenu.setDisable(false);
+			newMatchMenu.setDisable(true);
+		}
+	}
+	
+	public void surrendMatch() {
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle(I18N.get("alert.surrend.title"));
+		alert.setHeaderText(I18N.get("alert.surrend.header"));
+		alert.setContentText(I18N.get("alert.surrend.content"));
+
+		ButtonType buttonTypeOne = new ButtonType(I18N.get("alert.surrend.save"));
+		ButtonType buttonTypeTwo = new ButtonType(I18N.get("alert.surrend.quit"));
+		ButtonType buttonTypeCancel = new ButtonType(I18N.get("alert.surrend.cancel"), ButtonData.CANCEL_CLOSE);
+
+		alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo, buttonTypeCancel);
+
+		Optional<ButtonType> result = alert.showAndWait();
+		if (result.get() == buttonTypeOne){
+			saveGame();
+			System.exit(0);
+		} else if (result.get() == buttonTypeTwo) {
+			System.exit(0);
+		}
+	}
+	
+	public void bindMenuLanguage() {
+		//Bind menus
+		awaleMenu.textProperty().bind(I18N.createStringBinding("menu.awale"));
+		rulesMenu.textProperty().bind(I18N.createStringBinding("menu.rules"));
+		settingsMenu.textProperty().bind(I18N.createStringBinding("menu.settings"));
+		aboutMenu.textProperty().bind(I18N.createStringBinding("menu.about"));
+		
+		//Bind menu items
+		loadMatchMenu.textProperty().bind(I18N.createStringBinding("menu.item.load"));
+		saveMatchMenu.textProperty().bind(I18N.createStringBinding("menu.item.save"));
+		newMatchMenu.textProperty().bind(I18N.createStringBinding("menu.item.newMatch"));
+		surrendRoundMenu.textProperty().bind(I18N.createStringBinding("menu.item.surrend.round"));
+		surrendMenu.textProperty().bind(I18N.createStringBinding("menu.item.surrend.match"));
+		
+		seeRulesMenu.textProperty().bind(I18N.createStringBinding("menu.item.rules"));
+		
+		aboutMancalaMenu.textProperty().bind(I18N.createStringBinding("menu.item.about"));
+		
+		changeLanguage.textProperty().bind(I18N.createStringBinding("menu.item.language"));
+		
+		//Bind check menu items
+		hoverCheck.textProperty().bind(I18N.createStringBinding("menu.item.see.number"));
+		showCheck.textProperty().bind(I18N.createStringBinding("menu.item.see.state"));
+		toggleSoundCheck.textProperty().bind(I18N.createStringBinding("menu.item.sounds"));
+		toggleMusicCheck.textProperty().bind(I18N.createStringBinding("menu.item.music"));
+	}
+	
+	public void toggleLanguage() {
+		if(I18N.getLocale()==Locale.FRENCH)
+			I18N.setLocale(Locale.ENGLISH);
+		else
+			I18N.setLocale(Locale.FRENCH);
 	}
 	
 	public Label getInfo() {
@@ -703,5 +801,13 @@ public class ControllerMancala {
 
 	public void setBeginning(boolean isBeginning) {
 		this.isBeginning = isBeginning;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 }

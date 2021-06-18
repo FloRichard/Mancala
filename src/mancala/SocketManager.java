@@ -24,6 +24,9 @@ public class SocketManager {
 		ServerOutputController response = new ServerOutputController(this.input.next());
 		return response;
 	}
+	public void sendUsername(String username) {
+		this.output.println("{\"type\":\"name\",\"value\":\""+username+"\"}}");
+	}
 	
 	public void sendMove(String index) {
 		this.output.println("{\"type\":\"move\",\"index\":\""+index+"\"}");
@@ -32,7 +35,6 @@ public class SocketManager {
 	public void sendConfirm(String target) {
 		this.output.println("{\"type\":\"confirmation\",\"action\":\""+target+"\"}");
 	}
-	
 
 	public void sendContinue() {
 		this.output.println("{\"type\":\"endRoundConfirmation\"}");
