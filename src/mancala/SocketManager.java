@@ -25,7 +25,7 @@ public class SocketManager {
 		return response;
 	}
 	public void sendUsername(String username) {
-		this.output.println("{\"type\":\"name\",\"value\":\""+username+"\"}}");
+		this.output.println("{\"type\":\"name\",\"value\":\""+username+"\"}");
 	}
 	
 	public void sendMove(String index) {
