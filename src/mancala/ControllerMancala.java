@@ -360,6 +360,10 @@ public class ControllerMancala {
 	             webView.setPrefSize(500, 600);
 	             score.getDialogPane().setContent(webView);
 	             score.showAndWait();
+	             this.score.textProperty().bind(I18N.createStringBinding("empty"));
+	        	 manager.sendReset();
+	             resetGame();
+	             info.textProperty().bind(I18N.createStringBinding("info.please"));
 			 } else if (option.get() == buttonTypeCancel) {
 	        	 System.exit(0);
 	         }
