@@ -21,7 +21,8 @@ public class SocketManager {
 	}
 
 	public ServerOutputController listen() {
-		ServerOutputController response = new ServerOutputController(this.input.next());
+		String res = this.input.next();
+		ServerOutputController response = new ServerOutputController(res);
 		return response;
 	}
 	public void sendUsername(String username) {

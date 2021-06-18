@@ -69,7 +69,8 @@ public class ServerOutputController {
 		case INFO:
 			this.isInfo=true;
 			this.infoValue=jsonObject.get(VALUE).getAsString();
-			this.score=jsonObject.get(SCORE).getAsString();
+			if(infoValue.contains("game"))
+				this.score=jsonObject.get(SCORE).getAsString();
 			break;
 			
 		case ERROR:

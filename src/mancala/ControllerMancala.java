@@ -646,7 +646,7 @@ public class ControllerMancala {
 			newMatchMenu.setDisable(true);
 			loadMatchMenu.setDisable(true);
 		} else if (result.get() == buttonTypeTwo) {
-			manager.sendDifficulty("easy");
+			manager.sendDifficulty("normal");
 			manager.sendNewGame();
 			surrendMenu.setDisable(false);
 			saveMatchMenu.setDisable(false);
