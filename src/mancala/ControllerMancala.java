@@ -282,7 +282,6 @@ public class ControllerMancala {
 	}
 
 	public void handleResponse(ServerOutputController response) {
-		System.out.println(response.getRawJSONOutput());
 		if(response.isInfo() && response.getInfoValue().contains("round")) {
 			info.textProperty().bind(I18N.createStringBinding(response.getInfoValue()));
 			Alert alert = new Alert(AlertType.INFORMATION);
@@ -380,6 +379,7 @@ public class ControllerMancala {
 				toggleClickableHoles();
 		}
 		if(response.isBoard()) {
+			newMatchMenu.setDisable(true);
 			this.actualBoard=response.getRawJSONOutput();
 			if(this.playerNumber==response.getPlayerNumberTurn()) {
 				surrendRoundMenu.setDisable(false);
