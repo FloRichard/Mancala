@@ -50,6 +50,10 @@ public class SocketManager {
 		this.output.println("{\"type\":\"reset\"}");
 	}
 
+	public void sendDifficulty(String difficulty) {
+		this.output.println("{\"type\":\"difficulty\",\"value\":\""+difficulty+"\"}");
+	}
+
 	public Socket getSocket() {
 		return socket;
 	}

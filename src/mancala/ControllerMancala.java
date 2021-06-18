@@ -18,6 +18,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
@@ -50,7 +51,7 @@ public class ControllerMancala {
 	private Button button1, button2;
 	
 	@FXML
-	private MenuItem surrendRoundMenu, cancelMenu, surrendMenu, newMatchMenu, saveMatchMenu;
+	private MenuItem surrendRoundMenu, surrendMenu, newMatchMenu, saveMatchMenu;
 	
 	private List<Label> holesCount;
 	
@@ -68,13 +69,12 @@ public class ControllerMancala {
 	
 	private boolean hoverIsEnabled=false, showNumbersIsEnabled=false, isMusicEnabled=false, isSoundEnabled=false;
 	
-	private MediaPlayer applause, cancel, confirm, lose, seed, win; 
-
+	private MediaPlayer applause, cancel, confirm, lose, seed, win;
+	
 	@FXML
 	public void initialize() {
 		
 		info.textProperty().bind(I18N.createStringBinding("info.waiting"));
-		cancelMenu.setDisable(true);
 		surrendMenu.setDisable(true);
 		newMatchMenu.setDisable(true);
 		surrendRoundMenu.setDisable(true);
@@ -94,6 +94,8 @@ public class ControllerMancala {
 		loadMusicAndSounds();
 		
 		Platform.runLater(() -> {
+			resetGame();
+			initializeHandlersListeners();
 			socketHandler.start();
 		});
 	}
@@ -307,6 +309,7 @@ public class ControllerMancala {
 	        if (option.get() == null) {
 	            System.exit(0);
 	         } else if (option.get() == ButtonType.OK) {
+	        	score.textProperty().bind(I18N.createStringBinding("empty"));
 	        	manager.sendReset();
 	            resetGame();
 	            info.textProperty().bind(I18N.createStringBinding("info.waiting"));
@@ -488,7 +491,6 @@ public class ControllerMancala {
 	}
 	
 	public void showConfirmButtons() {
-		cancelMenu.setDisable(false);
 		button1.textProperty().bind(I18N.createStringBinding("button.confirm.yes"));
 		button2.textProperty().bind(I18N.createStringBinding("button.confirm.cancel"));
 		
@@ -503,7 +505,6 @@ public class ControllerMancala {
 		        }
 		        toggleButtonsVisibility();
 		        toggleClickableHoles();
-		        cancelMenu.setDisable(true);
 		    }
 		});
 		button2.setOnAction(new EventHandler<ActionEvent>() {
@@ -517,7 +518,6 @@ public class ControllerMancala {
 		        }
 		        toggleButtonsVisibility();
 		        toggleClickableHoles();
-		        cancelMenu.setDisable(true);
 		    }
 		});
 		toggleButtonsVisibility();
@@ -573,16 +573,37 @@ public class ControllerMancala {
 	}
 	
 	public void newMatch() {
-		manager.sendNewGame();
-		surrendMenu.setDisable(false);
-		saveMatchMenu.setDisable(false);
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle(I18N.get("alert.mode.title"));
+		alert.setHeaderText(I18N.get("alert.mode.header"));
+		alert.setContentText(I18N.get("alert.mode.content"));
+
+		ButtonType buttonTypeOne = new ButtonType(I18N.get("alert.mode.easy"));
+		ButtonType buttonTypeTwo = new ButtonType(I18N.get("alert.mode.normal"));
+		ButtonType buttonTypeCancel = new ButtonType(I18N.get("alert.mode.cancel"), ButtonData.CANCEL_CLOSE);
+
+		alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo, buttonTypeCancel);
+
+		Optional<ButtonType> result = alert.showAndWait();
+		if (result.get() == buttonTypeOne){
+			manager.sendDifficulty("easy");
+			manager.sendNewGame();
+			surrendMenu.setDisable(false);
+			saveMatchMenu.setDisable(false);
+			newMatchMenu.setDisable(true);
+		} else if (result.get() == buttonTypeTwo) {
+			manager.sendDifficulty("easy");
+			manager.sendNewGame();
+			surrendMenu.setDisable(false);
+			saveMatchMenu.setDisable(false);
+			newMatchMenu.setDisable(true);
+		}
 	}
 	
 	public void resetGame() {
 		List<VBox> holes = new ArrayList<VBox>();
 		Collections.addAll(holes, hole0, hole1, hole2, hole3, hole4, hole5, hole6, hole7, hole8, hole9, hole10, hole11);
 		setupLists(holes);
-		initializeHandlersListeners();
 	}
 	
 	public void toggleClickableHoles() {
