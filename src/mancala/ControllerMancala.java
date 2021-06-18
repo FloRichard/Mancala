@@ -394,6 +394,9 @@ public class ControllerMancala {
 			resetGame();
 			loadMatchMenu.setDisable(false);
 			newMatchMenu.setDisable(false);
+			surrendMenu.setDisable(true);
+			surrendRoundMenu.setDisable(true);
+			saveMatchMenu.setDisable(true);
 			this.isBeginning=response.isBeginning();
 			if(isBeginning)
 				isYourTurn=true;

@@ -55,7 +55,7 @@ public class SocketManager {
 	}
 	
 	public void sendLoad(String board) {
-		board.replace("board", "load");
+		board = board.replace("board", "load");
 		this.output.println(board);
 	}
 
