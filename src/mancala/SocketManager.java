@@ -47,12 +47,16 @@ public class SocketManager {
 	}
 	
 	public void sendReset() {
-		System.out.println("seneding reset");
 		this.output.println("{\"type\":\"reset\"}");
 	}
 
 	public void sendDifficulty(String difficulty) {
 		this.output.println("{\"type\":\"difficulty\",\"value\":\""+difficulty+"\"}");
+	}
+	
+	public void sendLoad(String board) {
+		board.replace("board", "load");
+		this.output.println(board);
 	}
 
 	public Socket getSocket() {

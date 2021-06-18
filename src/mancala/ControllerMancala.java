@@ -1,10 +1,18 @@
 package mancala;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringReader;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.Scanner;
 
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
@@ -29,6 +37,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.web.WebView;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.util.Duration;
 import utils.I18N;
@@ -51,7 +61,7 @@ public class ControllerMancala {
 	private Button button1, button2;
 	
 	@FXML
-	private MenuItem surrendRoundMenu, surrendMenu, newMatchMenu, saveMatchMenu;
+	private MenuItem surrendRoundMenu, surrendMenu, newMatchMenu, saveMatchMenu, loadMatchMenu;
 	
 	private List<Label> holesCount;
 	
@@ -70,6 +80,8 @@ public class ControllerMancala {
 	private boolean hoverIsEnabled=false, showNumbersIsEnabled=false, isMusicEnabled=false, isSoundEnabled=false;
 	
 	private MediaPlayer applause, cancel, confirm, lose, seed, win;
+	
+	private String actualBoard;
 	
 	@FXML
 	public void initialize() {
@@ -329,6 +341,7 @@ public class ControllerMancala {
 				toggleClickableHoles();
 		}
 		if(response.isBoard()) {
+			this.actualBoard=response.getRawJSONOutput();
 			if(this.playerNumber==response.getPlayerNumberTurn()) {
 				surrendRoundMenu.setDisable(false);
 				isYourTurn=true;
@@ -379,6 +392,7 @@ public class ControllerMancala {
 		}
 		if(response.isInit()) {
 			resetGame();
+			loadMatchMenu.setDisable(false);
 			newMatchMenu.setDisable(false);
 			this.isBeginning=response.isBeginning();
 			if(isBeginning)
@@ -591,12 +605,14 @@ public class ControllerMancala {
 			surrendMenu.setDisable(false);
 			saveMatchMenu.setDisable(false);
 			newMatchMenu.setDisable(true);
+			loadMatchMenu.setDisable(true);
 		} else if (result.get() == buttonTypeTwo) {
 			manager.sendDifficulty("easy");
 			manager.sendNewGame();
 			surrendMenu.setDisable(false);
 			saveMatchMenu.setDisable(false);
 			newMatchMenu.setDisable(true);
+			loadMatchMenu.setDisable(true);
 		}
 	}
 	
@@ -618,6 +634,40 @@ public class ControllerMancala {
         alert.setHeaderText(I18N.get("about.header"));
         alert.setContentText(I18N.get("about.content"));
         alert.showAndWait();
+	}
+	
+	public void saveGame() {
+		FileChooser fileChooser = new FileChooser();
+	    fileChooser.setTitle(I18N.get("save.title"));
+	    FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter(I18N.get("extension.game"), "*.game");
+		fileChooser.getExtensionFilters().add(extFilter);
+		File file = fileChooser.showSaveDialog((Stage) info.getScene().getWindow());
+		try (
+                BufferedReader reader = new BufferedReader(new StringReader(actualBoard));
+                PrintWriter writer = new PrintWriter(new FileWriter(file));
+            ) {
+                reader.lines().forEach(line -> writer.println(line));
+            }
+		catch (IOException e) {
+				e.printStackTrace();
+			}
+	}
+	
+	public void loadGame() {
+		FileChooser fileChooser = new FileChooser();
+		fileChooser.setTitle(I18N.get("load.title"));
+		FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter(I18N.get("extension.game"), "*.game");
+		fileChooser.getExtensionFilters().add(extFilter);
+		File file = fileChooser.showOpenDialog((Stage) info.getScene().getWindow());
+
+		try {
+			Scanner myReader = new Scanner(file);
+			String board = myReader.nextLine();
+			manager.sendLoad(board);
+			myReader.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public Label getInfo() {

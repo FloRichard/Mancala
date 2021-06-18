@@ -6,6 +6,7 @@ import com.google.gson.JsonParser;
 
 public class ServerOutputController {
 
+	private static final String DIFFICULTY = "difficulty";
 	private static final String PLAYER2_SCORE = "playerTwoScore";
 	private static final String PLAYER1_SCORE = "playerOneScore";
 	private static final String NEED_CONFIRMATION = "needConfirmation";
@@ -41,6 +42,7 @@ public class ServerOutputController {
 	private boolean isBeginning;
 	private int playerOneScore;
 	private int playerTwoScore;
+	private String difficulty;
 	
 	public ServerOutputController(String rawJSONOutput) {
 		this.rawJSONOutput = rawJSONOutput;
@@ -87,6 +89,7 @@ public class ServerOutputController {
 			this.playerTwoGranaryCount = jsonObject.get(PLAYER_TWO_GRANARY_COUNT).getAsInt();
 			this.playerOneScore = jsonObject.get(PLAYER1_SCORE).getAsInt();
 			this.playerTwoScore = jsonObject.get(PLAYER2_SCORE).getAsInt();
+			this.difficulty= jsonObject.get(DIFFICULTY).getAsString();
 			
 			break;
 		default:
@@ -238,6 +241,14 @@ public class ServerOutputController {
 
 	public void setPlayerTwoScore(int playerTwoScore) {
 		this.playerTwoScore = playerTwoScore;
+	}
+
+	public String getDifficulty() {
+		return difficulty;
+	}
+
+	public void setDifficulty(String difficulty) {
+		this.difficulty = difficulty;
 	}
 	
 }

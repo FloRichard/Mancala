@@ -15,12 +15,11 @@
         <menus>
           <Menu mnemonicParsing="false" text="Awalé">
             <items>
-              <MenuItem mnemonicParsing="false" text="Charger partie" />
-                  <MenuItem fx:id="saveMatchMenu" mnemonicParsing="false" text="Sauvegarder partie" />
-                  <MenuItem fx:id="surrendRoundMenu" mnemonicParsing="false" text="Abandonner partie" onAction="#surrendRound"/>
+              	  <MenuItem fx:id="loadMatchMenu" mnemonicParsing="false" text="Charger partie" onAction="#loadGame"/>
+                  <MenuItem fx:id="saveMatchMenu" mnemonicParsing="false" text="Sauvegarder partie" onAction="#saveGame"/>
+                  <MenuItem fx:id="surrendRoundMenu" mnemonicParsing="false" text="Abandonner manche" onAction="#surrendRound"/>
                   <MenuItem fx:id="newMatchMenu" mnemonicParsing="false" text="Nouveau match" onAction="#newMatch"/>
                   <MenuItem fx:id="surrendMenu" mnemonicParsing="false" text="Abandonner match" />
-                  <MenuItem fx:id="cancelMenu" mnemonicParsing="false" text="Annuler dernier coup" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Règles">
