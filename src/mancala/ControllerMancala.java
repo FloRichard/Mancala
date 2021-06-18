@@ -52,9 +52,9 @@ public class ControllerMancala {
 	@FXML
 	private MenuItem surrendRoundMenu, cancelMenu, surrendMenu, newMatchMenu, saveMatchMenu;
 	
-	private List<Label> holesCount = new ArrayList<Label>();
+	private List<Label> holesCount;
 	
-	private List<StackPane> holesPane = new ArrayList<StackPane>();
+	private List<StackPane> holesPane;
 	
 	private SocketManager manager;
 	
@@ -407,6 +407,8 @@ public class ControllerMancala {
 	}
 	
 	public void setupLists(List<VBox> holes) {
+		holesCount = new ArrayList<Label>();
+		holesPane = new ArrayList<StackPane>();
 		for (VBox hole : holes) {
 			
 			holesCount.add((Label) hole.getChildren().get(0));
