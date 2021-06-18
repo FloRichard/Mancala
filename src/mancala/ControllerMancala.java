@@ -352,8 +352,8 @@ public class ControllerMancala {
 	            info.textProperty().bind(I18N.createStringBinding("info.please"));
 	         } else if(option.get() == buttonTypeTwo) {
 	        	 Alert score = new Alert(AlertType.INFORMATION);
-	     		 score.setTitle(I18N.get("score.title"));
-	             score.setHeaderText(I18N.get("score.header"));
+	     		 score.setTitle(I18N.get("info.score.title"));
+	             score.setHeaderText(I18N.get("info.score.header"));
 	             WebView webView = new WebView();
 	             webView.getEngine().loadContent(response.getScore());
 	             webView.getEngine().setUserStyleSheetLocation(getClass().getClassLoader().getResource("style.css").toString());
