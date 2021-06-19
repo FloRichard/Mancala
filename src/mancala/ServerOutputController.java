@@ -4,6 +4,12 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+/**
+ * Class which is used to parse each request sent by the server.
+ * @author Julien MONTEIL
+ * @author Florian RICHARD
+ *
+ */
 public class ServerOutputController {
 
 	private static final String DIFFICULTY = "difficulty";
@@ -46,6 +52,10 @@ public class ServerOutputController {
 	private String difficulty;
 	private String score;
 	
+	/**
+	 * ServerOutputController constructor, initializes boolean values to false and call the method to parse the JSON output.
+	 * @param rawJSONOutput The JSON output from the server
+	 */
 	public ServerOutputController(String rawJSONOutput) {
 		this.rawJSONOutput = rawJSONOutput;
 		this.isInfo = false;
@@ -55,6 +65,11 @@ public class ServerOutputController {
 		this.parseRawJsonInput();
 	}
 
+	/**
+	 * Method called when the object is instantiated.
+	 * This method parses the rawJSONOuput using the google library GSON.
+	 * Check the type of the output and then fill the corresponding fields.
+	 */
 	public void parseRawJsonInput() {
 		@SuppressWarnings("deprecation")
 		JsonObject jsonObject = new JsonParser().parse(this.rawJSONOutput).getAsJsonObject();

@@ -8,6 +8,11 @@ import javafx.stage.Stage;
 import utils.I18N;
 
 
+/**
+ * Class which starts the connection interface.
+ * @author Julien MONTEIL
+ * @author Florian RICHARD
+ */
 public class Connection extends Application {
 	@Override
 	public void start(Stage stage) {

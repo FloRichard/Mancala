@@ -3,6 +3,9 @@ package mancala;
 import java.net.Socket;
 import java.util.Locale;
 
+import connection.Connection;
+import connection.ControllerConnection;
+import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -22,17 +25,34 @@ import javafx.stage.Stage;
 import utils.I18N;
 
 
+/**
+ * @author Julien MONTEIL
+ * @author Florian RICHARD
+ *
+ */
 public class Interface {
 	
 	private Socket socket;
 	private String username;
 	
+	/**
+	 * Interface constructor instantiated in the {@link ControllerConnection}
+	 * @param socket created in the connection window
+	 * @param lang chosen in the connection window
+	 * @param username input in the connection window
+	 */
 	public Interface(Socket socket, Locale lang, String username) {
 		this.socket = socket;
 		this.username = username;
 		I18N.setLocale(lang);
 	}
 	
+	/**
+	 * Method used the same way as a class which could extend {@link Application} 
+	 * Since the Mancala application starts from the {@link Connection} application.
+	 * It is not possible to start a new JavaFX application.
+	 * So we load a new fxml file.
+	 */
 	public void start() {
 		try {
 			ControllerMancala controller = new ControllerMancala();

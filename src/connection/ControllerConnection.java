@@ -22,6 +22,12 @@ import javafx.scene.text.Text;
 import mancala.Interface;
 import utils.I18N;
 
+/**
+ * Controller of the {@link Connection} interface.
+ * @author Julien MONTEIL
+ * @author Florian RICHARD
+ *
+ */
 public class ControllerConnection {
 	
 	private final Text warning = new Text();
@@ -64,6 +70,10 @@ public class ControllerConnection {
 	@FXML
 	private Button connection;
 	
+	/**
+	 * Initialize method called when the fxml file is loaded. Used to initialize handlers and listeners.
+	 * Also bind the different texts to allow the translation.
+	 */
 	@FXML
 	public void initialize() {
 		//Only allows digits and dots for the address
@@ -95,7 +105,7 @@ public class ControllerConnection {
 	            }
 	        }
 	    });
-		//Forbid spaces
+		//Forbid spaces and slashes
 		username.textProperty().addListener(new ChangeListener<String>() {
 			@Override
 			public void changed(ObservableValue<? extends String> observable, String oldValue, 
@@ -128,6 +138,11 @@ public class ControllerConnection {
 		warningHost.textProperty().bind(I18N.createStringBinding("alert.warning.unknownhost"));
 	}
 	
+	/**
+	 * Method called while clicking on the connection button.
+	 * Checks if all the fields are filled, if not warning alert is displayed to ask the user to fill them.
+	 * @param event
+	 */
 	public void submitConnection(ActionEvent event) {
 		if(address.getText().equals("") || port.getText().equals("")) {
 			Alert alert = new Alert(AlertType.WARNING);

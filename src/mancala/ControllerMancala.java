@@ -47,12 +47,10 @@ import javafx.util.Duration;
 import utils.I18N;
 
 /**
+ * 
+ * Controller class of the game interface
  * @author Julien MONTEIL
  * @author Florian RICHARD
- *
- */
-/**
- * @author Julien
  *
  */
 public class ControllerMancala {
