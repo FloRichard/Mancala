@@ -90,11 +90,29 @@ public class ControllerConnection {
 		languageChoice.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
 	        @Override
 	        public void changed(ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) {
-
 	            if(oldValue!=newValue){
 	                changeLanguage(newValue);
 	            }
 	        }
+	    });
+		//Forbid spaces
+		username.textProperty().addListener(new ChangeListener<String>() {
+			@Override
+			public void changed(ObservableValue<? extends String> observable, String oldValue, 
+			        String newValue) {
+				if(newValue.contains("\\")) {
+					newValue = newValue.replace("\\","");
+					username.setText(newValue);
+				}
+				if(newValue.contains(" ")) {
+					newValue = newValue.replace(" ","");
+					username.setText(newValue);
+				}
+				if(newValue.contains("/")) {
+					newValue = newValue.replace("/","");
+					username.setText(newValue);
+				}
+			}
 	    });
 		//Bind text values to bind them to the chosen language
 		usernameLabel.textProperty().bind(I18N.createStringBinding("label.usernameLabel"));
