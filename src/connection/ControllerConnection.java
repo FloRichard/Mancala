@@ -141,7 +141,7 @@ public class ControllerConnection {
 	/**
 	 * Method called while clicking on the connection button.
 	 * Checks if all the fields are filled, if not warning alert is displayed to ask the user to fill them.
-	 * @param event
+	 * @param event Get the source event, here the button click
 	 */
 	public void submitConnection(ActionEvent event) {
 		if(address.getText().equals("") || port.getText().equals("")) {

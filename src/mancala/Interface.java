@@ -26,6 +26,7 @@ import utils.I18N;
 
 
 /**
+ * The class corresponding to the graphic interface of the game
  * @author Julien MONTEIL
  * @author Florian RICHARD
  *
